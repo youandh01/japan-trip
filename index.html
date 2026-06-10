@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>우리 셋, 3박4일 일본 · 2026.8 (서울 출발)</title>
+<meta name="description" content="친구 3명 · 평일 3박4일 · 오사카·후쿠오카·도쿄·삿포로 비교 — 온도·동선·예산·맛집·여행지·예약링크 한눈에">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --paper:#FBF5E9; --paper2:#FFFDF8; --card:#FFFFFF;
+    --ink:#1E2636; --ink2:#46506A; --ink3:#8C8674;
+    --accent:#D7472B; --accent2:#B23A22; --accent-soft:#FBE5DC;
+    --gold:#B98432; --gold-soft:#F4E7CB;
+    --line:rgba(30,38,54,.12); --line2:rgba(30,38,54,.22);
+    --cool:#0E7C61; --cool-bg:#DAF0E6;
+    --warm:#96600F; --warm-bg:#F6E6C6;
+    --hot:#B23A22; --hot-bg:#FADFD6;
+    --serif:'Nanum Myeongjo',serif;
+    --sans:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',-apple-system,sans-serif;
+    --r:14px; --r2:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);line-height:1.7;background:var(--paper);
+    background-image:radial-gradient(rgba(30,38,54,.04) 1px,transparent 1px);background-size:22px 22px;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 70px}
+  .serif{font-family:var(--serif)}
+  a{color:var(--accent2);text-decoration:none}
+
+  .hero{position:relative;text-align:center;padding:56px 18px 26px;overflow:hidden}
+  .hero .disc{position:absolute;top:-70px;left:50%;transform:translateX(-50%);width:300px;height:300px;border-radius:50%;
+    background:radial-gradient(circle,var(--accent) 0 58%,transparent 60%);opacity:.08;pointer-events:none}
+  .kick{font-size:12.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--accent2);font-weight:600;margin-bottom:16px}
+  .hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(36px,9vw,60px);line-height:1.08;letter-spacing:-.01em}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .bigdate{font-family:var(--serif);font-weight:800;font-size:clamp(40px,11vw,76px);color:var(--ink);line-height:1;margin:22px 0 4px;letter-spacing:-.02em}
+  .bigdate span{color:var(--accent)}
+  .subdate{font-size:14.5px;color:var(--ink2)}
+  .rule{width:56px;height:3px;background:var(--accent);margin:24px auto 0;border-radius:2px}
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:30px}
+  .fact{background:var(--paper2);padding:15px 8px;text-align:center}
+  .fact .l{font-size:11px;color:var(--ink3);margin-bottom:4px}
+  .fact .v{font-size:13.5px;font-weight:600;line-height:1.35}
+  @media(max-width:560px){.facts{grid-template-columns:repeat(2,1fr)}}
+  .timing{margin-top:16px;background:var(--gold-soft);border:1px solid var(--gold);border-radius:var(--r);padding:13px 16px;font-size:13.6px;color:#6a4d18;display:flex;gap:10px}
+
+  section{margin-top:56px}
+  .sk{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent2);font-weight:600;margin-bottom:8px}
+  .st{font-family:var(--serif);font-size:clamp(26px,6.4vw,36px);font-weight:800;line-height:1.15;letter-spacing:-.01em}
+  .ss{color:var(--ink2);font-size:14.5px;margin-top:8px}
+
+  .mapwrap{margin-top:22px;background:var(--paper2);border:1px solid var(--line);border-radius:var(--r2);padding:8px 6px 4px}
+  .mapwrap svg{width:100%;height:auto;display:block}
+  .maplegend{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font-size:12px;color:var(--ink2);padding:6px 0 12px}
+  .maplegend span{display:flex;align-items:center;gap:6px}
+  .dotk{width:11px;height:11px;border-radius:50%}
+
+  .temps{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:20px 20px 12px}
+  .trow{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .tcity{flex:0 0 64px;font-size:13.5px;font-weight:600}
+  .ttrack{flex:1;height:26px;background:var(--paper);border-radius:8px;position:relative;overflow:hidden;border:1px solid var(--line)}
+  .tfill{height:100%;border-radius:7px 0 0 7px;display:flex;align-items:center;justify-content:flex-end;padding-right:9px;font-size:12px;font-weight:700;color:#fff}
+  .tlow{flex:0 0 58px;font-size:12px;color:var(--ink3);text-align:right}
+  .tnote{font-size:12px;color:var(--ink3);margin-top:2px}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+  @media(max-width:560px){.cards{grid-template-columns:1fr}}
+  .cc{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:20px 18px 16px;position:relative;transition:transform .15s}
+  .cc:hover{transform:translateY(-3px)}
+  .cc.rec{border:2px solid var(--accent)}
+  .ribbon{position:absolute;top:-12px;left:18px;background:var(--accent);color:#fff;font-size:12px;font-weight:600;padding:3px 13px;border-radius:8px}
+  .cc h3{font-family:var(--serif);font-size:23px;font-weight:800}
+  .cc .tg{font-size:12px;color:var(--ink3);margin-top:2px;margin-bottom:6px}
+  .stat{display:flex;justify-content:space-between;align-items:center;font-size:13.4px;padding:7px 0;border-top:1px dashed var(--line)}
+  .stat .k{color:var(--ink2)}
+  .stat .vv{font-weight:600;text-align:right}
+  .pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:7px;white-space:nowrap}
+  .pill.cool{background:var(--cool-bg);color:var(--cool)}
+  .pill.warm{background:var(--warm-bg);color:var(--warm)}
+  .pill.hot{background:var(--hot-bg);color:var(--hot)}
+  .cc .blurb{font-size:12.6px;color:var(--ink2);margin-top:12px;line-height:1.6}
+
+  .verdict{margin-top:24px;background:var(--accent-soft);border-radius:var(--r2);padding:22px 22px 18px;border:1px solid #f1cabb}
+  .verdict h4{font-family:var(--serif);font-size:21px;color:var(--accent2);font-weight:800;margin-bottom:8px}
+  .verdict p{font-size:14px;color:#6e2516;line-height:1.66}
+  .vgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+  @media(max-width:560px){.vgrid{grid-template-columns:1fr}}
+  .vg{background:var(--paper2);border-radius:var(--r);padding:11px 13px;font-size:13px;color:var(--ink2)}
+  .vg b{color:var(--ink)}
+
+  .tabbar{position:sticky;top:0;z-index:30;background:var(--paper);padding:14px 0 12px;margin-top:6px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+  .tabbar::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink2);background:var(--paper2);border:1px solid var(--line);border-radius:999px;padding:9px 17px;cursor:pointer;transition:all .15s}
+  .tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .tab.on.rec{background:var(--accent);border-color:var(--accent)}
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .phead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:10px 0 2px}
+  .phead h3{font-family:var(--serif);font-size:30px;font-weight:800}
+  .phead .bd{font-size:12px;font-weight:600;color:var(--accent2);background:var(--accent-soft);padding:3px 10px;border-radius:7px}
+  .pone{color:var(--ink2);font-size:14.3px;margin-bottom:8px}
+  .gauge{display:flex;align-items:center;gap:12px;background:var(--paper2);border:1px solid var(--line);border-radius:var(--r);padding:11px 15px;margin:14px 0 4px}
+  .gauge .big{font-family:var(--serif);font-size:30px;font-weight:800}
+  .gauge .lo{font-size:13px;color:var(--ink3)}
+  .gauge .note{font-size:12.5px;margin-left:auto;text-align:right;color:var(--ink2)}
+
+  .block{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:18px;margin-top:16px}
+  .block h4{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);font-weight:600;display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .block h4 .n{font-family:var(--serif);font-size:18px;color:var(--ink);font-weight:700}
+
+  .naver{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#03C75A;color:#fff;font-size:15px;font-weight:700;padding:13px;border-radius:var(--r);margin-bottom:12px}
+  .naver:hover{background:#02b350}
+  .naver .nb{background:#fff;color:#03C75A;font-weight:800;width:22px;height:22px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
+  .altlink{font-size:12.5px;color:var(--ink2);text-align:center;margin-bottom:4px}
+  .altlink a{border-bottom:1px solid var(--accent-soft)}
+
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;letter-spacing:.03em;color:var(--ink3);font-weight:600;text-transform:uppercase}
+  td:first-child{font-weight:600;white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  .hl td{background:var(--accent-soft)}
+  .nc{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .rc{color:var(--accent2);font-weight:700}
+
+  .board{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 10px;scrollbar-width:thin}
+  .dcol{flex:0 0 168px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px 11px;display:flex;flex-direction:column}
+  @media(min-width:620px){.dcol{flex:1 1 0}}
+  .dch{display:flex;align-items:center;gap:8px;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+  .dch .dn{font-family:var(--serif);font-size:22px;font-weight:800;color:var(--accent);line-height:1}
+  .dch .dd{font-size:11px;color:var(--ink3)}
+  .stop{position:relative;padding:9px 0 9px 18px}
+  .stop::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-radius:50%;background:var(--gold);z-index:1}
+  .stop::after{content:"";position:absolute;left:6px;top:18px;bottom:-9px;width:1.5px;background:var(--line2)}
+  .stop:last-child::after{display:none}
+  .stt{font-size:10.5px;letter-spacing:.04em;color:var(--ink3);text-transform:uppercase}
+  .sps{font-size:12.8px;font-weight:600;line-height:1.4;margin-top:1px}
+  .conn{font-size:10.5px;color:var(--cool);padding:2px 0 2px 18px;font-weight:600}
+  .scrollhint{font-size:11.5px;color:var(--ink3);text-align:center;margin-top:2px}
+  @media(min-width:620px){.scrollhint{display:none}}
+
+  details.sec{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);margin-top:16px;overflow:hidden}
+  details.sec>summary{list-style:none;cursor:pointer;padding:17px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  details.sec>summary::-webkit-details-marker{display:none}
+  details.sec>summary .lab{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);font-weight:600;display:flex;align-items:center;gap:9px}
+  details.sec>summary .lab .n{font-family:var(--serif);font-size:18px;color:var(--ink);font-weight:700}
+  details.sec>summary .more{font-size:12px;color:var(--ink3)}
+  details.sec[open]>summary{border-bottom:1px solid var(--line)}
+  details.sec[open]>summary .more::after{content:" ▲"}
+  details.sec:not([open])>summary .more::after{content:" ▼ 펼치기"}
+  .itwrap{padding:4px 18px 14px}
+  .it{padding:14px 0;border-bottom:1px solid var(--line)}
+  .it:last-child{border-bottom:none}
+  .it-h{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
+  .it-n{font-size:14.5px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--accent-soft);line-height:1.4}
+  .it-m{font-size:12px;color:var(--ink3);margin-top:4px}
+  .it-d{font-size:13px;color:var(--ink2);margin-top:6px;line-height:1.6}
+  .it-s{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--accent2);margin-top:8px;border-bottom:1px solid var(--accent-soft)}
+  .rb{flex:0 0 auto;font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;white-space:nowrap;margin-top:2px}
+  .rb.cool{background:var(--cool-bg);color:var(--cool)}
+  .rb.warm{background:var(--warm-bg);color:var(--warm)}
+  .rb.hot{background:var(--hot-bg);color:var(--hot)}
+  .rb.acc{background:var(--accent-soft);color:var(--accent2)}
+  .refbox{padding:4px 18px 16px;display:flex;flex-direction:column;gap:8px}
+  .refbox a{font-size:12.8px;color:var(--ink2);display:flex;gap:8px;align-items:baseline}
+  .refbox a:hover{color:var(--accent2)}
+  .refbox a span{flex:0 0 auto}
+
+  .check{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:22px;margin-top:20px}
+  .check h4{font-family:var(--serif);font-size:18px;font-weight:700;margin:18px 0 8px}
+  .check h4:first-child{margin-top:0}
+  .check label{display:flex;gap:10px;align-items:flex-start;font-size:14px;padding:6px 0;cursor:pointer}
+  .check input{margin-top:5px;width:17px;height:17px;accent-color:var(--accent);flex:0 0 auto}
+  .check label.done span{text-decoration:line-through;color:var(--ink3)}
+  .check .sub{font-size:12.3px;color:var(--ink2);padding-left:27px;margin:-2px 0 4px}
+  .note{font-size:12px;color:var(--ink3);line-height:1.6;margin-top:12px}
+  footer{margin-top:50px;padding-top:24px;border-top:1px solid var(--line);text-align:center;font-size:12.5px;color:var(--ink3)}
+  footer .big{font-family:var(--serif);font-size:17px;color:var(--ink2);margin-bottom:8px}
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="hero reveal in">
+  <div class="disc"></div>
+  <div class="kick">우리 셋의 여름 · なつ旅 2026</div>
+  <h1 class="serif">친구 셋,<br><em>3박4일</em> 일본</h1>
+  <div class="bigdate serif">8.3<span> → </span>8.6</div>
+  <div class="subdate">2026년 8월 · 월~목 평일 · 서울(인천/김포) 출발</div>
+  <div class="rule"></div>
+  <div class="facts">
+    <div class="fact"><div class="l">인원</div><div class="v">친구 3명</div></div>
+    <div class="fact"><div class="l">기간</div><div class="v">3박 4일</div></div>
+    <div class="fact"><div class="l">출발</div><div class="v">인천 / 김포</div></div>
+    <div class="fact"><div class="l">후보</div><div class="v">4개 도시</div></div>
+  </div>
+  <div class="timing"><span>🎐</span><div><b style="color:#5a4112">타이밍 굿.</b> 8/3~6은 일본 최대 연휴 <b style="color:#5a4112">오봉(8/13~16) 직전</b> → 8월 중 비교적 한산·저렴. 단, 후쿠오카·삿포로·도쿄엔 8월 중순 큰 불꽃축제가 있어 일정과 살짝 어긋나요(각 도시 '여행지'에서 확인).</div></div>
+</header>
+
+<div class="wrap">
+
+  <section class="reveal">
+    <div class="sk">한눈에 · 거리 &amp; 더위</div>
+    <h2 class="st serif">서울에서 얼마나 멀고, 얼마나 더울까</h2>
+    <p class="ss">점 색이 <b>8월 더위</b>. 가까울수록 짧은 일정에 유리, 빨간 점일수록 한낮이 더 덥습니다.</p>
+    <div class="mapwrap">
+      <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="서울에서 후쿠오카·오사카·도쿄·삿포로까지 비행시간과 8월 더위 지도">
+        <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#B98432"/></marker></defs>
+        <path d="M70 200 Q200 130 300 290" fill="none" stroke="#B98432" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#ah)" opacity=".8"/>
+        <path d="M70 200 Q260 120 430 235" fill="none" stroke="#B98432" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#ah)" opacity=".8"/>
+        <path d="M70 200 Q320 90 565 195" fill="none" stroke="#B98432" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#ah)" opacity=".8"/>
+        <path d="M70 200 Q360 30 600 95" fill="none" stroke="#B98432" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#ah)" opacity=".8"/>
+        <circle cx="70" cy="200" r="9" fill="#1E2636"/>
+        <text x="70" y="230" text-anchor="middle" font-family="Nanum Myeongjo,serif" font-size="16" font-weight="700" fill="#1E2636">서울</text>
+        <text x="70" y="247" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="11" fill="#8C8674">출발</text>
+        <circle cx="300" cy="290" r="14" fill="#FADFD6" stroke="#B23A22" stroke-width="2"/>
+        <text x="300" y="295" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="11" font-weight="700" fill="#B23A22">33°</text>
+        <text x="300" y="320" text-anchor="middle" font-family="Nanum Myeongjo,serif" font-size="15" font-weight="700" fill="#1E2636">후쿠오카</text>
+        <text x="300" y="337" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="11" fill="#46506A">✈ 1시간 20분</text>
+        <circle cx="430" cy="235" r="14" fill="#FADFD6" stroke="#B23A22" stroke-width="2"/>
+        <text x="430" y="240" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="11" font-weight="700" fill="#B23A22">34°</text>
+        <text x="430" y="200" text-anchor="middle" font-family="Nanum Myeongjo,serif" font-size="15" font-weight="700" fill="#1E2636">오사카</text>
+        <text x="430" y="217" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="11" fill="#46506A">✈ 1시간 50분</text>
+        <circle cx="565" cy="195" r="14" fill="#F6E6C6" stroke="#96600F" stroke-width="2"/>
+        <text x="565" y="200" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="11" font-weight="700" fill="#96600F">31°</text>
+        <text x="565" y="232" text-anchor="middle" font-family="Nanum Myeongjo,serif" font-size="15" font-weight="700" fill="#1E2636">도쿄</text>
+        <text x="565" y="249" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="11" fill="#46506A">✈ 2시간 20분</text>
+        <circle cx="600" cy="95" r="14" fill="#DAF0E6" stroke="#0E7C61" stroke-width="2"/>
+        <text x="600" y="100" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="11" font-weight="700" fill="#0E7C61">26°</text>
+        <text x="600" y="62" text-anchor="middle" font-family="Nanum Myeongjo,serif" font-size="15" font-weight="700" fill="#1E2636">삿포로</text>
+        <text x="600" y="79" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="11" fill="#46506A">✈ 2시간 50분</text>
+      </svg>
+      <div class="maplegend">
+        <span><i class="dotk" style="background:#0E7C61"></i>선선</span>
+        <span><i class="dotk" style="background:#96600F"></i>더움</span>
+        <span><i class="dotk" style="background:#B23A22"></i>매우 더움</span>
+        <span style="color:#8C8674">숫자 = 8월 평균 최고기온</span>
+      </div>
+    </div>
+    <div class="temps">
+      <div class="trow"><div class="tcity">삿포로</div><div class="ttrack"><div class="tfill" style="width:48%;background:#0E7C61">26°</div></div><div class="tlow">최저 19°</div></div>
+      <div class="trow"><div class="tcity">도쿄</div><div class="ttrack"><div class="tfill" style="width:70%;background:#C9863A">31°</div></div><div class="tlow">최저 24°</div></div>
+      <div class="trow"><div class="tcity">후쿠오카</div><div class="ttrack"><div class="tfill" style="width:78%;background:#CB5236">33°</div></div><div class="tlow">최저 26°</div></div>
+      <div class="trow"><div class="tcity">오사카</div><div class="ttrack"><div class="tfill" style="width:83%;background:#B23A22">34°</div></div><div class="tlow">최저 26°</div></div>
+      <div class="tnote">🌡️ 8월 평년값. 삿포로만 확연히 선선(낮 26°), 나머지 셋은 한낮 31~34°+높은 습도 → <b style="color:var(--ink2)">오전 야외 / 한낮 실내</b> 원칙 추천.</div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="sk">Decide together</div>
+    <h2 class="st serif">어디로 갈까? (3명 기준)</h2>
+    <p class="ss">1인 총액은 <b>중간 등급</b>(항공+숙소+식비+<b>교통 전부</b>) 대표값. 비용이 비슷해 <b>비행시간·더위·먹거리</b>로 고르면 돼요.</p>
+    <div class="cards">
+      <div class="cc rec">
+        <span class="ribbon">추천 ★</span>
+        <h3 class="serif">후쿠오카</h3><div class="tg">최단거리 · 먹부림</div>
+        <div class="stat"><span class="k">✈ 비행</span><span class="vv">1시간 20분 <span style="color:var(--accent)">최단</span></span></div>
+        <div class="stat"><span class="k">🌡 더위</span><span class="pill hot">33° / 26°</span></div>
+        <div class="stat"><span class="k">₩ 1인 총액</span><span class="vv">약 101만</span></div>
+        <div class="stat"><span class="k">📍 당일치기</span><span class="vv">유후인·벳푸 온천</span></div>
+        <p class="blurb">야타이·돈코츠라멘·모츠나베·미즈타키. 공항 2정거장이라 짧은 일정에 최강.</p>
+      </div>
+      <div class="cc">
+        <h3 class="serif">삿포로</h3><div class="tg">더위 탈출 · 최저가</div>
+        <div class="stat"><span class="k">✈ 비행</span><span class="vv">2시간 50분 <span style="color:var(--ink3)">최장</span></span></div>
+        <div class="stat"><span class="k">🌡 더위</span><span class="pill cool">26° / 19° 선선</span></div>
+        <div class="stat"><span class="k">₩ 1인 총액</span><span class="vv">약 95만 <span style="color:var(--cool)">최저</span></span></div>
+        <div class="stat"><span class="k">📍 당일치기</span><span class="vv">오타루 운하</span></div>
+        <p class="blurb">게·징기스칸·수프카레·여름 비어가든. 본토 폭염을 피하는 시원·저렴 카드.</p>
+      </div>
+      <div class="cc">
+        <h3 class="serif">오사카</h3><div class="tg">올라운더</div>
+        <div class="stat"><span class="k">✈ 비행</span><span class="vv">1시간 50분</span></div>
+        <div class="stat"><span class="k">🌡 더위</span><span class="pill hot">34° / 26°</span></div>
+        <div class="stat"><span class="k">₩ 1인 총액</span><span class="vv">약 101만</span></div>
+        <div class="stat"><span class="k">📍 당일치기</span><span class="vv">교토·나라</span></div>
+        <p class="blurb">도톤보리 먹방 + 야간 활동 + 교토 당일치기(교통 쌈) + USJ 옵션.</p>
+      </div>
+      <div class="cc">
+        <h3 class="serif">도쿄</h3><div class="tg">볼거리 최다</div>
+        <div class="stat"><span class="k">✈ 비행</span><span class="vv">2시간 20분</span></div>
+        <div class="stat"><span class="k">🌡 더위</span><span class="pill warm">31° / 24°</span></div>
+        <div class="stat"><span class="k">₩ 1인 총액</span><span class="vv">약 112만 <span style="color:var(--ink3)">최고</span></span></div>
+        <div class="stat"><span class="k">📍 당일치기</span><span class="vv">하코네·가와고에</span></div>
+        <p class="blurb">시부야·아사쿠사·긴자 + teamLab + 하코네. 볼거리 압도, 총액 최고.</p>
+      </div>
+    </div>
+    <div class="verdict">
+      <h4 class="serif">🏆 추천은 후쿠오카 — 단, 더위가 걱정되면 삿포로</h4>
+      <p>3박4일은 짧아요. <b>비행 1시간 20분 + 공항 2정거장</b>이라 시간 손실이 가장 적고 먹부림 테마에 딱. 다만 비용은 오사카와 비슷하고 <b>한낮 33°</b>는 각오해야 해요. 더위·예산이 1순위면 <b>삿포로</b>(26°·최저가)가 진짜 매력적.</p>
+      <div class="vgrid">
+        <div class="vg">🔥 <b>더위 NO</b> → <b>삿포로</b> (26°+최저가)</div>
+        <div class="vg">🍜 <b>최단·먹부림</b> → <b>후쿠오카</b></div>
+        <div class="vg">🎡 <b>올라운더</b> → <b>오사카</b> (교토·USJ)</div>
+        <div class="vg">🏙 <b>볼거리·쇼핑</b> → <b>도쿄</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="sk">City plans · 자료조사 반영</div>
+    <h2 class="st serif">도시별 상세 플랜</h2>
+    <p class="ss">유튜브·블로그·타베로그 조사 결과를 담았어요. <b>맛집·여행지 이름 = 구글맵</b>, 항공 = 네이버, 각 항목 아래 <b>출처 링크</b>까지. 긴 목록은 '펼치기'를 누르세요.</p>
+
+    <div class="tabbar" id="tabbar">
+      <button class="tab on rec" data-t="fukuoka">후쿠오카 ★</button>
+      <button class="tab" data-t="sapporo">삿포로</button>
+      <button class="tab" data-t="osaka">오사카</button>
+      <button class="tab" data-t="tokyo">도쿄</button>
+    </div>
+
+    <!-- ============ 후쿠오카 ============ -->
+    <div class="panel on" id="fukuoka">
+      <div class="phead"><h3 class="serif">후쿠오카 · 규슈</h3><span class="bd">종합 추천</span></div>
+      <p class="pone">비행 1시간 20분 · 공항 2정거장. 라멘·야타이·온천·당일치기를 짧은 일정에 다 담는 가성비 그룹 여행지.</p>
+      <div class="gauge"><span style="font-size:22px">🌡️</span><div><span class="big serif">33°</span> <span class="lo">/ 최저 26°</span></div><div class="note">매우 덥고 습함 · 소나기<br>오전 야외 / 한낮 온천·실내</div></div>
+
+      <div class="block">
+        <h4><span class="n">01</span> 항공 · 인천 → 후쿠오카 직항</h4>
+        <a class="naver" href="https://flight.naver.com/flights/international/ICN-FUK-20260803/FUK-ICN-20260806?adult=3"><span class="nb">N</span> 네이버에서 ICN–FUK 3명 바로 검색</a>
+        <p class="altlink"><a href="https://www.skyscanner.co.kr/transport/flights/icn/fuk/">스카이스캐너</a> · ⚠ 김포(GMP)→후쿠오카 직항 없음 — 인천 출발</p>
+        <table>
+          <tr><th>등급</th><th>유형</th><th class="nc">1인 왕복</th></tr>
+          <tr><td>가성비</td><td>LCC 최저가</td><td class="nc">약 18~24만</td></tr>
+          <tr class="hl"><td class="rc">중간 ★</td><td>LCC+수하물·좌석</td><td class="nc">약 25~32만</td></tr>
+          <tr><td>여유</td><td>FSC(대한·아시아나)</td><td class="nc">약 30~50만</td></tr>
+        </table>
+      </div>
+
+      <div class="block">
+        <h4><span class="n">02</span> 동선 한눈에</h4>
+        <div class="board">
+          <div class="dcol"><div class="dch"><span class="dn">1</span><span class="dd">8/3 월<br>도착</span></div>
+            <div class="stop"><div class="stt">오후</div><div class="sps">🛬 하카타 체크인</div></div><div class="conn">🚇 공항 2정거장</div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🏮 나카스 야타이</div></div></div>
+          <div class="dcol"><div class="dch"><span class="dn">2</span><span class="dd">8/4 화<br>근교+텐진</span></div>
+            <div class="stop"><div class="stt">오전</div><div class="sps">⛩️ 다자이후 텐만구</div></div><div class="conn">🚆 니시테츠 30분</div>
+            <div class="stop"><div class="stt">낮</div><div class="sps">🍜 신신 라멘 · 텐진</div></div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🍲 모츠나베 오오야마</div></div></div>
+          <div class="dcol"><div class="dch"><span class="dn">3</span><span class="dd">8/5 수<br>온천</span></div>
+            <div class="stop"><div class="stt">종일</div><div class="sps">♨️ 유후인 · 벳푸</div></div><div class="conn">🚌 버스투어</div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🐔 미즈타키</div></div></div>
+          <div class="dcol"><div class="dch"><span class="dn">4</span><span class="dd">8/6 목<br>출발</span></div>
+            <div class="stop"><div class="stt">오전</div><div class="sps">🛍️ 캐널시티</div></div>
+            <div class="stop"><div class="stt">점심</div><div class="sps">🍜 다이치노 우동</div></div><div class="conn">🚇 공항 2정거장</div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🛫 출발</div></div></div>
+        </div>
+        <div class="scrollhint">← 좌우로 밀어서 4일 보기 →</div>
+      </div>
+
+      <details class="sec"><summary><span class="lab"><span class="n">🏨 숙소</span> 추천 6곳 · 3인 트리플 위주</span><span class="more"></span></summary>
+        <div class="itwrap">
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=후쿠오카+東横INN博多口駅前">토요코인 하카타구치 에키마에</a><span class="rb cool">가성비</span></div><div class="it-m">하카타역 도보 3~5분 · 평시 8~12만/실(2인)</div><div class="it-d">역세권 가성비 체인, 무료 조식. 3인은 더블+싱글 2실 분리가 현실적.</div><a class="it-s" href="https://www.toyoko-inn.com/korea/">🏠 공식 예약</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=후쿠오카+Comfort+Hotel+Hakata">컴포트 호텔 하카타</a><span class="rb cool">가성비</span></div><div class="it-m">하카타역 도보 5분 · 평시 9~13만/트윈</div><div class="it-d">무료 조식, 신칸센·공항선 환승 편리. 일부 패밀리룸 3인 가능.</div><a class="it-s" href="https://www.kkday.com/ko/blog/36940/asia-japan-fukuoka-accomodation">📝 블로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=후쿠오카+博多グリーンホテルアネックス">하카타 그린 호텔 아넥스</a><span class="rb cool">가성비·트리플</span></div><div class="it-m">하카타역 도보 2~3분 · 트리플 12~17만</div><div class="it-d">초역세권 + 트리플·다다미룸이 실제로 있어 3명이 1인 1침대로.</div><a class="it-s" href="https://dayoff.co.kr/whatsinmytrip/하카타호텔-추천-후쿠오카-접근성-최적의-숙소-top-5/">📝 블로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=후쿠오카+Cross+Life+Hakata+Tenjin">크로스 라이프 하카타 텐진</a><span class="rb warm">중간·대욕장</span></div><div class="it-m">나카스카와바타·텐진 도보권 · 트윈 13~18만</div><div class="it-d">신축, 대욕장·사우나. 소파베드로 3인 가능, 야간 동선 좋음.</div><a class="it-s" href="https://goodtripinfo.com/크로스-라이프-하카타-텐진-객실-조식-대욕장-내돈내/">📝 내돈내산 후기</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=후쿠오카+Solaria+Nishitetsu+Hotel+Fukuoka">솔라리아 니시테츠 호텔</a><span class="rb warm">중간·텐진</span></div><div class="it-m">텐진역 도보 3분 · 트윈 18~25만</div><div class="it-d">텐진 한복판 4성, 백화점·지하상가 직결. 트리플·쿼드룸 있음.</div><a class="it-s" href="https://www.kkday.com/ko/blog/36940/asia-japan-fukuoka-accomodation">📝 블로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=후쿠오카+Hotel+Nikko+Fukuoka">호텔 닛코 후쿠오카</a><span class="rb hot">고급·트리플</span></div><div class="it-m">하카타역 도보 3분(지하도) · 트리플 25~38만</div><div class="it-d">시몬스 침대 3대·35㎡ 트리플룸이 따로 있어 3인에 최적.</div><a class="it-s" href="https://www.hotelnikko-fukuoka.com/ko/stay/room/triple_luxury.html">🏠 트리플룸 공식</a></div>
+        </div>
+      </details>
+
+      <div class="block">
+        <h4><span class="n">03</span> 예산 + 교통비 상세 (1인)</h4>
+        <table>
+          <tr><th>항목</th><th class="nc">가성비</th><th class="nc">중간</th><th class="nc">여유</th></tr>
+          <tr><td>항공</td><td class="nc">22</td><td class="nc">28</td><td class="nc">40</td></tr>
+          <tr><td>숙소</td><td class="nc">24</td><td class="nc">35</td><td class="nc">85</td></tr>
+          <tr><td>식비</td><td class="nc">12</td><td class="nc">18</td><td class="nc">28</td></tr>
+          <tr><td>교통 ▼</td><td class="nc">11</td><td class="nc">12</td><td class="nc">14</td></tr>
+          <tr><td>기타</td><td class="nc">5</td><td class="nc">8</td><td class="nc">15</td></tr>
+          <tr class="hl"><td>1인 합계</td><td class="nc">약 74만</td><td class="nc">약 101만</td><td class="nc">약 182만</td></tr>
+          <tr><td>3인 총액</td><td class="nc">222만</td><td class="nc">303만</td><td class="nc">546만</td></tr>
+        </table>
+        <table style="margin-top:12px">
+          <tr><th>교통 (1인)</th><th class="nc">대략</th></tr>
+          <tr><td>공항↔하카타 왕복</td><td class="nc">~520엔</td></tr>
+          <tr><td>시내+다자이후</td><td class="nc">~2,300엔</td></tr>
+          <tr><td>유후인·벳푸 당일(JR특급)</td><td class="nc">~12,000엔</td></tr>
+          <tr><td>합계</td><td class="nc rc">약 12~13만원</td></tr>
+        </table>
+        <p class="note">💡 교통비 대부분이 <b>유후인·벳푸 당일치기</b>. 다자이후·시내만 하면 <b>~3만원</b>. 규슈를 더 돌면 JR 북큐슈 패스 검토.</p>
+      </div>
+
+      <details class="sec"><summary><span class="lab"><span class="n">🍜 맛집</span> 10곳 · 시그니처~야식</span><span class="more"></span></summary>
+        <div class="itwrap">
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=もつ鍋おおやま+本店+福岡">모츠나베 오오야마 본점</a><span class="rb warm">예약권장</span></div><div class="it-m">하카타역 도보 10분 · 2,500~3,000엔</div><div class="it-d">후쿠오카 모츠나베 대명사. 진한 미소 국물+신선한 곱창, 마무리 짬뽕면.</div><a class="it-s" href="https://www.kkday.com/ko/blog/37504/asia-japan-fukuoka-hakata-motsunabe">📝 모츠나베 BEST10</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=博多+水炊き+専門店+福岡">미즈타키 (하카타 닭전골 노포)</a><span class="rb hot">예약필수</span></div><div class="it-m">하카타·텐진 · 코스 5,000~6,000엔</div><div class="it-d">맑은 닭육수 전골, 마무리 죽까지. 모츠나베와 함께 꼭 먹을 시그니처.</div><a class="it-s" href="https://tabelog.com/en/fukuoka/rstLst/RC1404/">🍽 타베로그 랭킹</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=博多ラーメンShinShin+天神本店+福岡">신신 라멘 텐진본점</a><span class="rb cool">줄서기·수요휴무</span></div><div class="it-m">텐진역 도보 5분 · 700~900엔</div><div class="it-d">현지 1순위 돈코츠 라멘, 깔끔한 국물. 새벽 3시까지(야식 OK).</div><a class="it-s" href="https://www.gltjp.com/en/directory/item/13252/">📝 가이드</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=一蘭+本社総本店+福岡+中洲">이치란 본사 총본점</a><span class="rb cool">줄서기·24시</span></div><div class="it-m">나카스 · 980엔~ / 본점 5각그릇 1,620엔</div><div class="it-d">본점 한정 오각형 그릇 정식. 칸막이석 '경험'으로 한 번.</div><a class="it-s" href="https://www.gltjp.com/en/directory/item/14462/">📝 가이드</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=一風堂+大名本店+福岡">잇푸도 다이묘 본점</a><span class="rb cool">줄서기</span></div><div class="it-m">텐진/다이묘 · 시로마루 790엔~</div><div class="it-d">세계로 뻗은 3대 라멘 발상지. 시로마루·아카마루 비교 추천.</div><a class="it-s" href="https://www.japankuru.com/ko/food/e2516/">📝 블로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=元祖博多めんたい重+福岡">원조 하카타 멘타이쥬</a><span class="rb cool">줄서기</span></div><div class="it-m">니시나카스 · 1,800~2,500엔</div><div class="it-d">명란을 통째로 다시마말이해 밥 위에. 한글 메뉴, 아침 7시~.</div><a class="it-s" href="https://www.mentaiju.com/?wovn=en">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=大地のうどん+博多+福岡">다이치노 우동 하카타점</a><span class="rb cool">줄서기·현금</span></div><div class="it-m">하카타역 인근 · 고보텐우동 480엔</div><div class="it-d">회오리 거대 우엉튀김+맑은 멸치국물. 1,000엔 이하 가성비.</div><a class="it-s" href="https://www.tripstore.kr/blog/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%EC%9A%B0%EB%8F%99-%EB%A7%9B%EC%A7%91-%EC%B6%94%EC%B2%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8">📝 우동 정리</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=とりかわ大臣+博多+福岡">토리카와 타이진 (닭껍질 꼬치)</a><span class="rb cool">로컬·야식</span></div><div class="it-m">하카타·텐진 · 꼬치 1개 150엔~</div><div class="it-d">후쿠오카 명물 닭껍질 꼬치, 겉바속촉. 맥주와 캐주얼하게.</div><a class="it-s" href="https://kr.trip.com/moments/detail/fukuoka-prefecture-14584-15693629/">📝 트립닷컴</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=中洲+屋台+福岡">나카스 야타이 (포장마차)</a><span class="rb cool">현금·18시~</span></div><div class="it-m">나카스 강변 · 1인 2,000~3,000엔</div><div class="it-d">강변 야경+야식의 후쿠오카 상징. 라멘·오뎅·꼬치, 현금 필수.</div><a class="it-s" href="https://www.tripstore.kr/blog/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%EB%82%98%EC%B9%B4%EC%8A%A4-%EB%A7%9B%EC%A7%91-%EC%B4%9D%EC%A0%95%EB%A6%AC-%EB%82%AD%EB%A7%8C-%EA%B0%80%EB%93%9D-%EC%95%BC%ED%83%80%EC%9D%B4%EB%B6%80%ED%84%B0-%ED%98%84%EC%A7%80%EC%9D%B8-%EC%B0%90%EB%A7%9B%EC%A7%91%EA%B9%8C%EC%A7%80">📝 나카스 정리</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=焼肉やっちゃん+中洲+福岡">야키니쿠 얏짱 나카스점</a><span class="rb warm">야식·예약</span></div><div class="it-m">나카스 · 1인 3,000~5,000엔</div><div class="it-d">새벽까지 영업하는 야식 야키니쿠. 우설·곱창·탄 스튜가 인기.</div><a class="it-s" href="https://www.yakiniku-yatchan.com/kr/">🏠 공식</a></div>
+        </div>
+      </details>
+
+      <details class="sec"><summary><span class="lab"><span class="n">📸 여행지</span> 10곳 · 명소·포토스팟·8월</span><span class="more"></span></summary>
+        <div class="itwrap">
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=다자이후+太宰府天満宮">다자이후 텐만구</a><span class="rb warm">야외·근교</span></div><div class="it-m">니시테츠 다자이후역 도보 5분 · 무료</div><div class="it-d">학문의 신 신사 + 쿠마 켄고 설계 스타벅스. 1일차 반나절 코스.</div><a class="it-s" href="https://ko.skyticket.com/guide/61964">📝 가이드</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=福岡+福岡タワー">후쿠오카 타워 & 모모치 해변</a><span class="rb warm">야외·야경</span></div><div class="it-m">버스 20~30분 · 전망대 800엔</div><div class="it-d">234m 해변 전망탑, 일몰·야경 압권. 바다+타워 인생샷.</div><a class="it-s" href="https://www.tripstore.kr/blog/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%EB%AA%A8%EB%AA%A8%EC%B9%98-%ED%95%B4%EB%B3%80-%ED%83%80%EC%9B%8C-%EC%94%A8%EC%82%AC%EC%9D%B4%EB%93%9C">📝 모모치 가이드</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=福岡+キャナルシティ博多">캐널시티 하카타</a><span class="rb cool">실내·더위OK</span></div><div class="it-m">하카타역 도보 10분 · 무료</div><div class="it-d">운하 쇼핑몰, 무료 분수쇼+야간 프로젝션 매핑. 라멘 스타디움.</div><a class="it-s" href="https://www.tripstore.kr/blog/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%EC%BA%90%EB%84%90-%EC%8B%9C%ED%8B%B0-%EC%87%BC%ED%95%91-%EB%B6%84%EC%88%98%EC%87%BC-%EC%99%84%EB%B2%BD-%EA%B0%80%EC%9D%B4%EB%93%9C">📝 가이드</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=福岡+teamLab+Forest+BOSS+E・ZO">팀랩 포레스트 후쿠오카</a><span class="rb cool">실내·포토</span></div><div class="it-m">지교하마 E・ZO 5F · 약 2,800엔</div><div class="it-d">몰입형 디지털아트, 어디서 찍어도 인생샷. 8월 더위 완벽 회피.</div><a class="it-s" href="https://halfclock.com/entry/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4%ED%8C%80%EB%9E%A9-%ED%8F%AC%EB%A0%88%EC%8A%A4%ED%8A%B8-%EC%A0%84%EC%8B%9C-%ED%9B%84%EA%B8%B0">📝 후기</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=福岡+大濠公園">오호리 공원 & 일본정원</a><span class="rb warm">야외·힐링</span></div><div class="it-m">오호리코엔역 바로 · 정원 240엔</div><div class="it-d">호수 공원+스타벅스 테라스, 보트. 한낮엔 카페로 더위 피하기.</div><a class="it-s" href="https://policymix.kr/entry/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-3%EB%B0%954%EC%9D%BC-%EC%98%A4%ED%98%B8%EB%A6%AC%EA%B3%B5%EC%9B%90-%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4%EC%97%90%EC%84%9C-%EC%89%AC%EC%96%B4%EA%B0%80%EA%B8%B0">📝 블로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=糸島+桜井二見ヶ浦">이토시마 부부바위 & 흰 토리이</a><span class="rb warm">야외·인생샷</span></div><div class="it-m">이토시마 (차 40분) · 무료</div><div class="it-d">바다 위 하얀 토리이+부부바위, 일몰 100선. 렌터카 추천.</div><a class="it-s" href="https://kr.trip.com/moments/detail/itoshima-57383-121698270/">📝 트립닷컴</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=糸島+ヤシの木ブランコ+サンセットロード">이토시마 야자수 그네 & 런던버스</a><span class="rb warm">야외·인생샷</span></div><div class="it-m">이토시마 선셋로드 (차 40분)</div><div class="it-d">바다 향한 야자수 그네 인생샷+빨간 런던버스 카페. 친구 사진놀이 최적.</div><a class="it-s" href="https://matcha-jp.com/ko/20338">📝 MATCHA</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=湯布院+金鱗湖">유후인 (긴린코·유노츠보)</a><span class="rb hot">당일치기</span></div><div class="it-m">하카타서 버스 2시간 20분 · 무료</div><div class="it-d">온천마을 산책+소품샵+긴린코 호수. 근교 당일치기 1순위.</div><a class="it-s" href="https://www.kkday.com/ko/blog/34848/asia-japan-fukuoka-yufuin">📝 유후인 코스</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=北九州+門司港レトロ">모지코 레트로 & 블루윙 모지</a><span class="rb warm">야경·근교</span></div><div class="it-m">신칸센 고쿠라 환승 · 무료</div><div class="it-d">레트로 항구거리+연인의 다리+30만개 일루미네이션. 해질녘 추천.</div><a class="it-s" href="https://www.crossroadfukuoka.jp/kr/articles/mojiko-retro">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=筑後川花火大会+久留米">8월 불꽃축제 (지쿠고가와·간몬해협)</a><span class="rb acc">8월 이벤트</span></div><div class="it-m">구루메·기타큐슈 · 무료</div><div class="it-d">지쿠고가와 8/5(수) 예정, 간몬해협 8/13(목) 예정. 날짜 공식 재확인.</div><a class="it-s" href="https://www.crossroadfukuoka.jp/kr/articles/summer-festival">🏠 공식</a></div>
+        </div>
+      </details>
+
+      <details class="sec"><summary><span class="lab"><span class="n">📺 참고 영상 & 블로그</span></span><span class="more"></span></summary>
+        <div class="refbox">
+          <a href="https://www.youtube.com/watch?v=y9wKNfljtVI"><span>📺</span> 후쿠오카 하카타 숙소 | 3박4일 호텔 모음</a>
+          <a href="https://www.kkday.com/ko/blog/31992/asia-japan-fukuoka-food"><span>📝</span> 2025 후쿠오카 맛집 BEST 14 — KKday</a>
+          <a href="https://kr.trip.com/blog/a-place-to-go-and-prepare-for-the-fukuoka-trip-in-japan/"><span>📝</span> 2026 후쿠오카 인기 명소 10곳 — 트립닷컴</a>
+          <a href="https://www.crossroadfukuoka.jp/kr/theme/theme3_kr"><span>🏠</span> SNS 사진명소·여름 불꽃축제 — 공식 관광</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- ============ 삿포로 ============ -->
+    <div class="panel" id="sapporo">
+      <div class="phead"><h3 class="serif">삿포로 · 홋카이도</h3><span class="bd">더위 탈출 🌿 · 최저가</span></div>
+      <p class="pone">스스키노 3박 고정 + 오타루 당일치기. 게·징기스칸·수프카레·여름 비어가든. 본토 폭염을 피하는 가장 시원한 선택.</p>
+      <div class="gauge"><span style="font-size:22px">🌿</span><div><span class="big serif" style="color:var(--cool)">26°</span> <span class="lo">/ 최저 19°</span></div><div class="note">4곳 중 유일하게 선선<br>한낮에도 야외 활동 OK</div></div>
+
+      <div class="block">
+        <h4><span class="n">01</span> 항공 · 인천 → 신치토세 직항</h4>
+        <a class="naver" href="https://flight.naver.com/flights/international/ICN-CTS-20260803/CTS-ICN-20260806?adult=3"><span class="nb">N</span> 네이버에서 ICN–CTS 3명 바로 검색</a>
+        <p class="altlink"><a href="https://www.skyscanner.co.kr/routes/icn/cts/incheon-international-to-sapporo-chitose.html">스카이스캐너</a> · LCC·FSC 직항 다수 (GMP–CTS 직항도 일부)</p>
+        <table>
+          <tr><th>등급</th><th>유형</th><th class="nc">1인 왕복</th></tr>
+          <tr><td>가성비</td><td>LCC</td><td class="nc">약 18~30만</td></tr>
+          <tr class="hl"><td class="rc">중간 ★</td><td>LCC+옵션/FSC 특가</td><td class="nc">약 30만대</td></tr>
+          <tr><td>여유</td><td>FSC</td><td class="nc">약 30~45만</td></tr>
+        </table>
+      </div>
+
+      <div class="block">
+        <h4><span class="n">02</span> 동선 한눈에</h4>
+        <div class="board">
+          <div class="dcol"><div class="dch"><span class="dn">1</span><span class="dd">8/3 월<br>도착</span></div>
+            <div class="stop"><div class="stt">오후</div><div class="sps">🛬 스스키노 체크인</div></div><div class="conn">🚆 JR 쾌속 37분</div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🐑 징기스칸 다루마</div></div></div>
+          <div class="dcol"><div class="dch"><span class="dn">2</span><span class="dd">8/4 화<br>오타루</span></div>
+            <div class="stop"><div class="stt">오전</div><div class="sps">🚣 오타루 운하</div></div><div class="conn">🚆 JR 30분</div>
+            <div class="stop"><div class="stt">낮</div><div class="sps">🍰 르타오 치즈케이크</div></div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🍻 오도리 비어가든</div></div></div>
+          <div class="dcol"><div class="dch"><span class="dn">3</span><span class="dd">8/5 수<br>시내</span></div>
+            <div class="stop"><div class="stt">아침</div><div class="sps">🍣 니조시장 카이센동</div></div>
+            <div class="stop"><div class="stt">낮</div><div class="sps">🍛 수프카레 가라쿠</div></div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🦀 게 코스 카니혼케</div></div></div>
+          <div class="dcol"><div class="dch"><span class="dn">4</span><span class="dd">8/6 목<br>출발</span></div>
+            <div class="stop"><div class="stt">오전</div><div class="sps">🍫 시로이코이비토</div></div>
+            <div class="stop"><div class="stt">점심</div><div class="sps">🍣 네무로 하나마루</div></div><div class="conn">🚆 JR 쾌속 37분</div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🛫 출발</div></div></div>
+        </div>
+        <div class="scrollhint">← 좌우로 밀어서 4일 보기 →</div>
+      </div>
+
+      <details class="sec"><summary><span class="lab"><span class="n">🏨 숙소</span> 추천 6곳 · 스스키노 거점</span><span class="more"></span></summary>
+        <div class="itwrap">
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=삿포로+소테츠+프레사인+스스키노">소테츠 프레사인 스스키노</a><span class="rb cool">가성비</span></div><div class="it-m">스스키노역 도보 4분 · 8~12만/실</div><div class="it-d">스스키노 한복판 가성비 체인. 트윈+엑스트라로 3인 가능.</div><a class="it-s" href="https://en.sotetsu-hotels.com/fresa-inn/susukino/rooms/">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=삿포로+그랑벨+호텔+스스키노">그랑벨 호텔 스스키노</a><span class="rb cool">가성비·신축</span></div><div class="it-m">스스키노역 도보 3~4분 · 10~16만/실</div><div class="it-d">신축 디자이너 호텔, 초근접 입지. 넓은 타입+엑스트라로 3인.</div><a class="it-s" href="https://en.granbellhotel.jp/susukino/">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=삿포로+그랑벨+호텔+타누키">그랑벨 호텔 타누키</a><span class="rb cool">트리플★</span></div><div class="it-m">타누키코지 옆 · 트리플 13~20만</div><div class="it-d">전용 트리플룸(싱글 3+소파베드, 29㎡). 3명에 가장 추천, 아케이드 옆.</div><a class="it-s" href="https://en.granbellhotel.jp/sapporo/room/triple/">🏠 트리플 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=삿포로+카락사+호텔">카락사 호텔 삿포로</a><span class="rb warm">중간·트리플</span></div><div class="it-m">다누키코지 맞은편 · 패밀리 트리플 12~18만</div><div class="it-d">패밀리 트리플룸(1~3인 명시)으로 3인 예약 안정적. 관광 특화.</div><a class="it-s" href="https://karaksahotels.com/kr/sapporo/room/room4/">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=삿포로+크로스+호텔">크로스 호텔 삿포로</a><span class="rb warm">중간·루프톱탕</span></div><div class="it-m">오도리역 도보 5분 · 18~28만/실</div><div class="it-d">넓은 디자인 객실+18층 루프톱 대욕장·노천탕. 야경 호평, 중심 거점.</div><a class="it-s" href="https://www.google.com/maps/search/?api=1&query=삿포로+크로스+호텔">📍 지도</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=삿포로+JR타워+호텔+닛코">JR 타워 호텔 닛코 삿포로</a><span class="rb hot">고급·역직결</span></div><div class="it-m">삿포로역 직결 · 35~55만~/실</div><div class="it-d">홋카이도 최고층 5성, 22층 천연온천 스파+전망. 캐리어·당일치기 동선 최고.</div><a class="it-s" href="https://www.jrhotels.co.jp/tower/korean/">🏠 공식</a></div>
+        </div>
+      </details>
+
+      <div class="block">
+        <h4><span class="n">03</span> 예산 + 교통비 상세 (1인)</h4>
+        <table>
+          <tr><th>항목</th><th class="nc">가성비</th><th class="nc">중간</th><th class="nc">여유</th></tr>
+          <tr><td>항공</td><td class="nc">24</td><td class="nc">32</td><td class="nc">40</td></tr>
+          <tr><td>숙소</td><td class="nc">15</td><td class="nc">25</td><td class="nc">55</td></tr>
+          <tr><td>식비</td><td class="nc">17</td><td class="nc">25</td><td class="nc">38</td></tr>
+          <tr><td>교통 ▼</td><td class="nc">4</td><td class="nc">5</td><td class="nc">6</td></tr>
+          <tr><td>기타</td><td class="nc">5</td><td class="nc">8</td><td class="nc">12</td></tr>
+          <tr class="hl"><td>1인 합계</td><td class="nc">약 65만</td><td class="nc">약 95만</td><td class="nc">약 151만</td></tr>
+          <tr><td>3인 총액</td><td class="nc">195만</td><td class="nc">285만</td><td class="nc">453만</td></tr>
+        </table>
+        <table style="margin-top:12px">
+          <tr><th>교통 (1인)</th><th class="nc">대략</th></tr>
+          <tr><td>공항↔삿포로 왕복(JR쾌속)</td><td class="nc">~2,860엔</td></tr>
+          <tr><td>오타루 당일치기 왕복</td><td class="nc">~1,500엔</td></tr>
+          <tr><td>시내 지하철·IC</td><td class="nc">~1,500엔</td></tr>
+          <tr><td>합계</td><td class="nc rc">약 5만원 · JR패스 불필요</td></tr>
+        </table>
+        <p class="note">💡 당일치기가 가까워(오타루 30분) 교통비가 4곳 중 최저. 게값은 시세 변동 크니 예약 시 확인.</p>
+      </div>
+
+      <details class="sec"><summary><span class="lab"><span class="n">🍜 맛집</span> 10곳 · 게·라멘·수프카레</span><span class="more"></span></summary>
+        <div class="itwrap">
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=札幌+成吉思汗だるま+本店">징기스칸 다루마 본점</a><span class="rb cool">줄서기·현금</span></div><div class="it-m">스스키노역 도보 3~5분 · 3,000~4,000엔</div><div class="it-d">삿포로 징기스칸 원조 노포. 잡내 없는 생양고기, 유튜브 단골.</div><a class="it-s" href="https://njobmoney.com/entry/%EC%82%BF%ED%8F%AC%EB%A1%9C-%EC%96%91%EA%B3%A0%EA%B8%B0-%EB%A7%9B%EC%A7%91-%EC%A7%95%EA%B8%B0%EC%8A%A4%EC%B9%B8-%EB%8B%A4%EB%A3%A8%EB%A7%88-%EB%B0%A9%EB%AC%B8-%ED%9B%84%EA%B8%B0">📝 후기</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=札幌+スープカレー+GARAKU">수프카레 가라쿠</a><span class="rb cool">줄서기·LINE대기</span></div><div class="it-m">오도리역 도보 3분 · 1,100~1,300엔</div><div class="it-d">삿포로 3대 수프카레 1순위. 통닭다리+튀긴 채소, 해장으로도 호평.</div><a class="it-s" href="https://yudi1blog.com/entry/%EC%82%BF%ED%8F%AC%EB%A1%9C-%EB%A7%9B%EC%A7%91-%EC%88%98%ED%94%84%EC%B9%B4%EB%A0%88-%EA%B0%80%EB%9D%BC%EC%BF%A0-%EC%9B%A8%EC%9D%B4%ED%8C%85-%EC%98%88%EC%95%BD-%EB%A9%94%EB%89%B4-%EA%B0%80%EA%B2%A9-%EB%82%B4%EB%8F%88%EB%82%B4%EC%82%B0-%ED%9B%84%EA%B8%B0">📝 후기</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=札幌+スープカリー+Suage+本店">수프카레 스아게+ 본점</a><span class="rb cool">줄서기</span></div><div class="it-m">스스키노역 도보 5분 · 1,000~1,400엔</div><div class="it-d">가라쿠와 양대산맥. 자체 농장 채소 튀김, 가라쿠 웨이팅 시 대안.</div><a class="it-s" href="https://tabelog.com/en/hokkaido/A0101/A010103/1006004/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=札幌+すみれ+中の島本店">스미레 라멘 본점</a><span class="rb cool">줄서기</span></div><div class="it-m">나카노시마역 도보 8분 · 1,000~1,200엔</div><div class="it-d">삿포로 미소라멘 원조급. 라드막+두툼 곱슬면. 도심은 라멘요코초 계열점.</div><a class="it-s" href="https://livejapan.com/en/in-hokkaido/in-pref-hokkaido/in-sapporo_chitose/article-a1000177/">📝 가이드</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=札幌+元祖さっぽろラーメン横丁">원조 라멘 요코초 (라멘골목)</a><span class="rb cool">골목·야식</span></div><div class="it-m">스스키노역 도보 1~3분 · 900~1,200엔</div><div class="it-d">17개 점포가 모인 라멘 성지. 여러 집 비교, 야식으로도 인기.</div><a class="it-s" href="https://www.sapporo.travel/en/gourmet/shop/ganso-ramen-yokocho/">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=札幌+二条市場+大磯+OHISO">오이소 (니조시장 카이센동)</a><span class="rb cool">오픈런</span></div><div class="it-m">니조시장 · 삼색동 4,000엔대</div><div class="it-d">우니·이쿠라·게살 덮밥. 우니는 8월 제철! 이른 아침(7~8시) 권장.</div><a class="it-s" href="https://ohiso.jp/ko/">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=札幌+かに本家+札幌本店">카니혼케 삿포로 본점</a><span class="rb warm">예약권장</span></div><div class="it-m">삿포로역 도보 5분 · 코스 5,000~10,000엔</div><div class="it-d">1971년 게 요리 노포. 털게·대게 코스, 좌식 룸으로 3인 편함.</div><a class="it-s" href="https://njobmoney.com/entry/%ED%99%8B%EC%B9%B4%EC%9D%B4%EB%8F%84-%EC%82%BF%ED%8F%AC%EB%A1%9C-%ED%84%B8%EA%B2%8C-%EB%8C%80%EA%B2%8C-%EB%A7%9B%EC%A7%91-%EC%B9%B4%EB%8B%88-%ED%98%BC%EC%BC%80-%EB%B0%A9%EB%AC%B8-%ED%9B%84%EA%B8%B0">📝 후기</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=札幌+きのとや+カフェ+大通公園店">키노토야 카페 오도리공원점</a><span class="rb cool">디저트</span></div><div class="it-m">오도리역 앞 · 500~800엔</div><div class="it-d">홋카이도 우유 진한 소프트아이스크림·치즈타르트. 공원 산책과 함께.</div><a class="it-s" href="https://myliving.net/entry/%EC%82%BF%ED%8F%AC%EB%A1%9C%EC%9D%98-%EB%94%94%EC%A0%80%ED%8A%B8-%EA%B0%80%EA%B2%8C%EB%93%A4-%ED%82%A4%EB%85%B8%ED%86%A0%EC%95%BC-%EC%B9%B4%ED%8E%98-%EC%98%A4%EB%8F%84%EB%A6%AC%EA%B3%B5%EC%9B%90%EC%A0%90-%ED%99%8B%EC%B9%B4%EC%9D%B4%EB%8F%84-%EB%8C%80%ED%95%99%EA%B5%90-%ED%8F%AC%EB%9D%BC%EC%8A%A4-%EA%B8%B0%ED%83%80%EC%B9%B4%EB%A1%9C-%EB%B3%B8%EC%A0%90-%EB%A1%AF%EC%B9%B4%ED%85%8C%EC%9D%B4-%EC%82%BF%ED%8F%AC%EB%A1%9C-%EB%B3%B8%EC%A0%90">📝 블로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=札幌+すすきの+パフェ+夜パフェ+ナナカマド">시메 파르페 (야식 파르페)</a><span class="rb cool">야식·18시~</span></div><div class="it-m">스스키노 일대 · 1,200~1,800엔</div><div class="it-d">삿포로 탄생 '술 후 파르페' 문화. 8월엔 여름 과일 버전.</div><a class="it-s" href="https://log.deep-exp.com/en/media/873">📝 파르페 8선</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=小樽+ルタオ+LeTAO+本店">르타오 본점 (오타루)</a><span class="rb cool">디저트·오타루</span></div><div class="it-m">오타루 메르헨 교차로 · 조각 600~800엔</div><div class="it-d">더블 프로마주 치즈케이크. 오타루 당일치기 디저트 포인트.</div><a class="it-s" href="https://slns.co.kr/entry/%EC%82%BF%ED%8F%AC%EB%A1%9C-%EC%98%A4%ED%83%80%EB%A3%A8-%EB%A5%B4%ED%83%80%EC%98%A4-%EB%B3%B8%EC%A0%90-%EC%B9%B4%ED%8E%98-%EA%B0%80%EB%A9%B4-%EC%B9%98%EC%A6%88%EC%BC%80%EC%9D%B4%ED%81%AC-%EA%BC%AD-%EB%82%B4%EB%8F%88%EB%82%B4%EC%82%B0-%ED%9B%84%EA%B8%B0">📝 후기</a></div>
+        </div>
+      </details>
+
+      <details class="sec"><summary><span class="lab"><span class="n">📸 여행지</span> 10곳 · 야경·여름축제·근교</span><span class="more"></span></summary>
+        <div class="itwrap">
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Sapporo+Odori+Park+TV+Tower">오도리 공원 + TV타워</a><span class="rb warm">야외·도심</span></div><div class="it-m">오도리역 바로 · 전망대 1,000엔</div><div class="it-d">도심 가로지르는 1.5km 공원, TV타워 인증샷 국룰. 8월 비어가든 허브.</div><a class="it-s" href="https://www.kkday.com/ko/blog/36937/asia-japan-sapporo-travel">📝 BEST15</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Sapporo+Odori+Beer+Garden">삿포로 여름축제 · 오도리 비어가든</a><span class="rb acc">8월 이벤트★</span></div><div class="it-m">오도리공원 · 입장무료, 생맥 600엔~</div><div class="it-d">일본 최대급 야외 비어가든. 2026 기간 7/23~8/18로 일정과 겹침!</div><a class="it-s" href="https://www.sapporo.travel/en/event/event-list/sapporo_summer_festival/">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=former+Hokkaido+Government+Office+red+brick">홋카이도청 붉은벽돌청사</a><span class="rb warm">야외·포토</span></div><div class="it-m">삿포로역 도보 8분 · 무료</div><div class="it-d">붉은벽돌+파란지붕 네오바로크 청사, 정원 연못. ※보수 여부 확인.</div><a class="it-s" href="https://www.tripstore.kr/blog/%EC%82%BF%ED%8F%AC%EB%A1%9C-%EA%B4%80%EA%B4%91%EC%A7%80-%EC%B6%94%EC%B2%9C-%EB%AA%85%EC%86%8C">📝 가이드</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Mount+Moiwa+Ropeway+Summit+Observatory+Sapporo">모이와야마 전망대</a><span class="rb warm">야경</span></div><div class="it-m">로프웨이 왕복 2,100엔</div><div class="it-d">일본 신3대 야경. 일몰 30분 전 올라가 노을→야경. '행복의 종' 포토존.</div><a class="it-s" href="https://www.tripstore.kr/blog/%EB%AA%A8%EC%9D%B4%EC%99%80%EC%95%BC%EB%A7%88-%EC%A0%84%EB%A7%9D%EB%8C%80-%EC%82%BF%ED%8F%AC%EB%A1%9C-%EC%95%BC%EA%B2%BD-%EA%B0%80%EC%9D%B4%EB%93%9C">📝 가이드</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Shiroi+Koibito+Park+Sapporo">시로이 코이비토 파크</a><span class="rb warm">포토·체험</span></div><div class="it-m">미야노사와역 도보 7분 · 전시 800엔</div><div class="it-d">과자 테마파크, 유럽풍 정원·런던버스 포토존. 쿠키 만들기 체험.</div><a class="it-s" href="https://www.shiroikoibitopark.jp/ko/">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Sapporo+Beer+Museum">삿포로 맥주박물관 & 가든</a><span class="rb cool">실내·식사</span></div><div class="it-m">버스 15~20분 · 견학 무료</div><div class="it-d">붉은벽돌 양조장, 유료 시음+비어홀 징기스칸. 한낮 피서 겸 식사.</div><a class="it-s" href="https://www.sapporobeer.jp/english/brewery/s_museum/ko/">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Hokkaido+Jingu+Maruyama+Park">홋카이도 신사 & 마루야마 공원</a><span class="rb warm">야외·힐링</span></div><div class="it-m">마루야마코엔역 도보 15분 · 무료</div><div class="it-d">울창한 숲 신사+공원. 그늘 많아 더운 날 시원, 롯카테이 판주쿠 떡.</div><a class="it-s" href="https://www.getyourguide.com/ko-kr/explorer/sapporo-ttd32644/best-places-to-visit-in-sapporo/">📝 가이드</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Otaru+Canal">오타루 운하 & 사카이마치</a><span class="rb hot">당일치기</span></div><div class="it-m">JR 30~45분 · 무료</div><div class="it-d">석조창고 운하(해질녘 가스등 야경)+유럽풍 거리·오르골당. 반나절.</div><a class="it-s" href="https://www.tripstore.kr/blog/otaru-places-to-visit-course">📝 오타루 코스</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Moerenuma+Park+Sapporo">모에레누마 공원</a><span class="rb warm">야외·숨은곳</span></div><div class="it-m">지하철+버스 50분 · 무료</div><div class="it-d">이사무 노구치 설계 조형 공원. 유리 피라미드·기하학 언덕, 미니멀 인생샷.</div><a class="it-s" href="https://www.sapporo.travel/en/spot/">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Farm+Tomita+Furano+lavender">후라노·비에이 (청의 호수)</a><span class="rb hot">당일·하루</span></div><div class="it-m">버스투어 6,000~9,000엔</div><div class="it-d">꽃밭·청의 호수 절경. ★8월엔 라벤더 옅어짐 → 시간 아까우면 오타루 우선.</div><a class="it-s" href="https://travel.hasummer.com/entry/%EC%9D%BC%EB%B3%B8%EC%82%BF%ED%8F%AC%EB%A1%9C-2024-8%EC%9B%94-%EB%B9%84%EC%97%90%EC%9D%B4-%EB%B2%84%EC%8A%A4%ED%88%AC%EC%96%B4-%ED%9B%84%EA%B8%B01-%ED%8C%9C%ED%86%A0%EB%AF%B8%ED%83%80">📝 8월 후기</a></div>
+        </div>
+      </details>
+
+      <details class="sec"><summary><span class="lab"><span class="n">📺 참고 영상 & 블로그</span></span><span class="more"></span></summary>
+        <div class="refbox">
+          <a href="https://www.youtube.com/watch?v=T7-hJvQt_Do"><span>📺</span> 꿀팁가득 삿포로 브이로그 (맛집·오타루·숙소)</a>
+          <a href="https://www.youtube.com/watch?v=k8_OugchHMM"><span>📺</span> 2025 삿포로 신상·가성비 호텔 TOP7</a>
+          <a href="https://kr.trip.com/blog/sapporo-restaurant-recommendations/"><span>📝</span> 2025 삿포로 맛집 15곳 — 트립닷컴</a>
+          <a href="https://www.kkday.com/ko/blog/36937/asia-japan-sapporo-travel"><span>📝</span> 2026 삿포로 가볼만한 곳 BEST15 — KKday</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- ============ 오사카 ============ -->
+    <div class="panel" id="osaka">
+      <div class="phead"><h3 class="serif">오사카 · 간사이</h3><span class="bd">올라운더</span></div>
+      <p class="pone">도톤보리 먹방 + 야간 활동 + 교토·나라 당일치기(교통 쌈) + USJ 옵션. 난바 한 곳 고정.</p>
+      <div class="gauge"><span style="font-size:22px">🌡️</span><div><span class="big serif">34°</span> <span class="lo">/ 최저 26°</span></div><div class="note">가장 덥고 습함<br>오전 야외 / 한낮 실내</div></div>
+
+      <div class="block">
+        <h4><span class="n">01</span> 항공 · 인천 → 간사이 직항</h4>
+        <a class="naver" href="https://flight.naver.com/flights/international/ICN-KIX-20260803/KIX-ICN-20260806?adult=3"><span class="nb">N</span> 네이버에서 ICN–KIX 3명 바로 검색</a>
+        <p class="altlink"><a href="https://www.skyscanner.co.kr/transport/flights/icn/kix/">스카이스캐너</a> · 김포 직항은 피치항공 단독(편수 제한)</p>
+        <table>
+          <tr><th>등급</th><th>유형</th><th class="nc">1인 왕복</th></tr>
+          <tr><td>가성비</td><td>LCC 특가</td><td class="nc">약 15~20만</td></tr>
+          <tr class="hl"><td class="rc">중간 ★</td><td>LCC 상단/FSC 하단</td><td class="nc">약 20~28만</td></tr>
+          <tr><td>여유</td><td>FSC(대한·아시아나)</td><td class="nc">약 28~40만</td></tr>
+        </table>
+      </div>
+
+      <div class="block">
+        <h4><span class="n">02</span> 동선 한눈에</h4>
+        <div class="board">
+          <div class="dcol"><div class="dch"><span class="dn">1</span><span class="dd">8/3 월<br>도착</span></div>
+            <div class="stop"><div class="stt">오후</div><div class="sps">🛬 난바 체크인</div></div><div class="conn">🚆 라피트 40분</div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🌃 도톤보리·신사이바시</div></div></div>
+          <div class="dcol"><div class="dch"><span class="dn">2</span><span class="dd">8/4 화<br>시내</span></div>
+            <div class="stop"><div class="stt">오전</div><div class="sps">🏯 오사카성</div></div>
+            <div class="stop"><div class="stt">낮</div><div class="sps">🐙 회전초밥·다코야키</div></div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🍢 쿠시카츠 다루마</div></div></div>
+          <div class="dcol"><div class="dch"><span class="dn">3</span><span class="dd">8/5 수<br>교토/USJ</span></div>
+            <div class="stop"><div class="stt">오전</div><div class="sps">⛩️ 후시미이나리</div></div><div class="conn">🚆 신쾌속 30분</div>
+            <div class="stop"><div class="stt">낮</div><div class="sps">🍵 니시키시장·기온</div></div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🥞 오코노미야키 미즈노</div></div></div>
+          <div class="dcol"><div class="dch"><span class="dn">4</span><span class="dd">8/6 목<br>출발</span></div>
+            <div class="stop"><div class="stt">오전</div><div class="sps">🛍️ 신사이바시 쇼핑</div></div>
+            <div class="stop"><div class="stt">점심</div><div class="sps">🍜 이마이 우동</div></div><div class="conn">🚆 급행 45분</div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🛫 출발</div></div></div>
+        </div>
+        <div class="scrollhint">← 좌우로 밀어서 4일 보기 →</div>
+      </div>
+
+      <details class="sec"><summary><span class="lab"><span class="n">🏨 숙소</span> 추천 6곳 · 난바 거점</span><span class="more"></span></summary>
+        <div class="itwrap">
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+호텔+포르자+오사카+난바+도톤보리">호텔 포르자 오사카 난바 도톤보리</a><span class="rb cool">가성비·신축</span></div><div class="it-m">난바역 도보 6분 · 트리플 10~14만</div><div class="it-d">2021 신축, 도톤보리 한복판. 늦게까지 놀고 바로 복귀 편함.</div><a class="it-s" href="https://brunch.co.kr/@whatsinmytrip/162">📝 3인 숙소 후기</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+소테츠+그랜드+프레사+오사카+난바">소테츠 그랜드 프레사 난바</a><span class="rb cool">가성비</span></div><div class="it-m">난바역 도보 5분 · 10~13만/실</div><div class="it-d">가성비 비즈니스호텔, 구로몬시장 도보 5분. 트리플 적어 2+1도 고려.</div><a class="it-s" href="https://www.kkday.com/ko/blog/36637/asia-japan-osaka-hotel">📝 블로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+온야도+노노+난바+천연온천">온야도 노노 난바 천연온천</a><span class="rb cool">가성비·온천</span></div><div class="it-m">닛폰바시역 도보 1분 · 10~15만/실</div><div class="it-d">전 객실 다다미+천연온천 대욕장. 더위 끝 온천으로 풀기 좋음.</div><a class="it-s" href="https://dayoff.co.kr/whatsinmytrip/%EC%98%A8%EC%95%BC%EB%8F%84%EB%85%B8%EB%85%B8%EB%82%9C%EB%B0%94-%EB%8F%84%ED%86%A4%EB%B3%B4%EB%A6%AC-%EB%8F%84%EB%B3%B4-5%EB%B6%84-%EC%B2%9C%EC%97%B0%EC%98%A8%EC%B2%9C-%EB%8C%80%EC%9A%95%EC%9E%A5/">📝 후기</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+미마루+오사카+신사이바시">미마루 오사카 신사이바시</a><span class="rb warm">중간·아파트형★</span></div><div class="it-m">신사이바시역 도보 5분 · 15~22만/실</div><div class="it-d">침대 4개+주방·거실 아파트형. 3명 한 방+장봐 요리, 그룹 최적.</div><a class="it-s" href="https://kr.trip.com/hotels/osaka-hotel-detail-100367501/mimaru-osaka-shinsaibashi-east/">📝 트립닷컴</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+크로스+호텔+오사카">크로스 호텔 오사카</a><span class="rb warm">중간·디자인</span></div><div class="it-m">난바역 도보 3분 · 18~26만/실</div><div class="it-d">도톤보리 1분 디자인 4성, 욕조·세면 분리. 트리플/엑스트라 확인.</div><a class="it-s" href="https://kr.trip.com/hotels/osaka-hotel-detail-688204/cross-hotel-osaka/">📝 트립닷컴</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+스위소텔+난카이+오사카">스위소텔 난카이 오사카</a><span class="rb hot">고급·역직결</span></div><div class="it-m">난카이 난바역 직결 · 40~55만~/실</div><div class="it-d">5성 럭셔리, 라피트로 공항 38분 직결. 수영장·스파, 마지막날 동선 최고.</div><a class="it-s" href="https://swissotelnankaiosaka.com/">🏠 공식</a></div>
+        </div>
+      </details>
+
+      <div class="block">
+        <h4><span class="n">03</span> 예산 + 교통비 상세 (1인)</h4>
+        <table>
+          <tr><th>항목</th><th class="nc">가성비</th><th class="nc">중간</th><th class="nc">여유</th></tr>
+          <tr><td>항공</td><td class="nc">17</td><td class="nc">25</td><td class="nc">35</td></tr>
+          <tr><td>숙소</td><td class="nc">22</td><td class="nc">35</td><td class="nc">58</td></tr>
+          <tr><td>식비</td><td class="nc">14</td><td class="nc">24</td><td class="nc">36</td></tr>
+          <tr><td>교통 ▼</td><td class="nc">4</td><td class="nc">5</td><td class="nc">6</td></tr>
+          <tr><td>기타</td><td class="nc">6</td><td class="nc">12</td><td class="nc">22</td></tr>
+          <tr class="hl"><td>1인 합계</td><td class="nc">약 63만</td><td class="nc">약 101만</td><td class="nc">약 157만</td></tr>
+          <tr><td>3인 총액</td><td class="nc">189만</td><td class="nc">303만</td><td class="nc">471만</td></tr>
+        </table>
+        <table style="margin-top:12px">
+          <tr><th>교통 (1인)</th><th class="nc">대략</th></tr>
+          <tr><td>공항↔난바 왕복(라피트+급행)</td><td class="nc">~2,400엔</td></tr>
+          <tr><td>시내 IC·지하철 1일권</td><td class="nc">~2,400엔</td></tr>
+          <tr><td>교토 당일 왕복(JR신쾌속)</td><td class="nc">~1,160엔</td></tr>
+          <tr><td>합계</td><td class="nc rc">약 5만원 · JR패스 불필요</td></tr>
+        </table>
+        <p class="note">💡 교토가 30분·왕복 1,160엔으로 가까워 교통비 쌈. USJ 가면 입장권 별도(약 8,600엔~).</p>
+      </div>
+
+      <details class="sec"><summary><span class="lab"><span class="n">🍜 맛집</span> 10곳 · 코나몬·라멘·디저트</span><span class="more"></span></summary>
+        <div class="itwrap">
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+たこ家道頓堀くくる+本店">쿠쿠루 본점 (다코야키)</a><span class="rb cool">착석·인증샷</span></div><div class="it-m">도톤보리 · 8개 600~750엔</div><div class="it-d">40년 노포. 큰 문어 통째 '비쿠리 타코야키' 인증샷. 2~3층 착석.</div><a class="it-s" href="https://tabelog.com/en/osaka/A2701/A270202/27001546/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+美津の+お好み焼き">미즈노 (오코노미야키)</a><span class="rb cool">오픈런</span></div><div class="it-m">도톤보리 · 1,500~2,500엔</div><div class="it-d">1945년 노포, 폭신한 야마이모야키가 시그니처. 직접 구워줌.</div><a class="it-s" href="https://tabelog.com/en/osaka/A2701/A270202/27001278/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+串かつ+だるま+道頓堀店">쿠시카츠 다루마 도톤보리점</a><span class="rb cool">줄서기</span></div><div class="it-m">도톤보리 · 모둠 1,000~2,000엔</div><div class="it-d">1929년 쿠시카츠 원조. '소스 두 번 금지' 체험, 맥주와 굿.</div><a class="it-s" href="https://www.kushikatu-daruma.com/location/doutonbori">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+北極星+心斎橋本店+オムライス">북극성 신사이바시 본점</a><span class="rb cool">착석·노포</span></div><div class="it-m">난바역 도보 5분 · 1,000~1,500엔</div><div class="it-d">1922년 '오므라이스 발상지'. 다다미방에서 원조 오므라이스.</div><a class="it-s" href="https://tabelog.com/en/osaka/A2701/A270202/27001274/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+一蘭+道頓堀">이치란 라멘 도톤보리점</a><span class="rb cool">24시·실내</span></div><div class="it-m">도톤보리 · 1,000엔~</div><div class="it-d">칸막이 부스 돈코츠 라멘, 맛 커스텀. 본관/별관 입구 현장 확인.</div><a class="it-s" href="https://www.google.com/maps/search/?api=1&query=오사카+一蘭+道頓堀">📍 지도</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+どうとんぼり神座+道頓堀店">카무쿠라 (칸나) 도톤보리점</a><span class="rb cool">가성비·해장</span></div><div class="it-m">도톤보리 · 800~900엔</div><div class="it-d">배추 듬뿍 맑은 '오이시이 라멘'. 이치란과 결 달라 라멘 두 집 OK.</div><a class="it-s" href="https://enhasugil.com/entry/%EC%98%A4%EC%82%AC%EC%B9%B4-%EB%9D%BC%EB%A9%98-%EB%A7%9B%EC%A7%91-%EC%B6%94%EC%B2%9C">📝 블로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+道頓堀+今井+本店+うどん">도톤보리 이마이 본점 (우동)</a><span class="rb cool">수요휴무</span></div><div class="it-m">도톤보리 · 키츠네우동 800~900엔</div><div class="it-d">1947년 우동 노포, 우아한 맑은 다시. 느끼할 때 입가심으로.</div><a class="it-s" href="https://tabelog.com/en/osaka/A2701/A270202/27001289/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+551蓬莱+本店+豚まん">551 호라이 본점 (부타망)</a><span class="rb cool">간식</span></div><div class="it-m">난바 에비스바시 · 1개 210엔</div><div class="it-d">오사카 명물 고기만두. 갓 쪄낸 따끈한 부타망, 회전 빠름.</div><a class="it-s" href="https://www.551horai.co.jp/shop/list/13/">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+りくろーおじさんの店+なんば本店">리쿠로 오지상 난바 본점</a><span class="rb cool">디저트</span></div><div class="it-m">난카이 난바역 · 치즈케이크 965엔</div><div class="it-d">갓 구운 18cm 푹신 치즈케이크. 포장해 호텔에서 나눠 먹기.</div><a class="it-s" href="https://dategom.com/%ED%98%84%EC%A7%80%EC%9D%B8-%EC%B6%94%EC%B2%9C-%EC%98%A4%EC%82%AC%EC%B9%B4-%EB%94%94%EC%A0%80%ED%8A%B8-%EC%B9%B4%ED%8E%98-%EC%B0%90-%EB%A7%9B%EC%A7%91-%EC%B4%9D%EC%A0%95%EB%A6%AC/">📝 블로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=오사카+金龍ラーメン+道頓堀店">금룡라멘 도톤보리점 (야식)</a><span class="rb cool">24시·야식</span></div><div class="it-m">도톤보리 · 라멘 800엔</div><div class="it-d">24시간 마무리 라멘, 김치·마늘·부추 셀프 무한. 심야 웨이팅 적음.</div><a class="it-s" href="https://tabelog.com/en/osaka/A2701/A270202/27001495/">🍽 타베로그</a></div>
+        </div>
+      </details>
+
+      <details class="sec"><summary><span class="lab"><span class="n">📸 여행지</span> 10곳 · 명소·전망·당일치기</span><span class="more"></span></summary>
+        <div class="itwrap">
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Osaka+Dotonbori">도톤보리</a><span class="rb warm">야외·랜드마크</span></div><div class="it-m">난바역 도보 5분 · 무료</div><div class="it-d">글리코상·게 간판·네온의 먹자거리. 에비스바시서 글리코 포즈 필수. 해질녘 추천.</div><a class="it-s" href="https://www.tripstore.kr/blog/%EB%8F%84%ED%86%A4%EB%B3%B4%EB%A6%AC-%EA%B8%80%EB%A6%AC%EC%BD%94%EC%83%81-%EC%B4%AC%EC%98%81-%EB%AA%85%EB%8B%B9-BEST3-%EC%8B%A4%ED%8C%A8-%EC%97%86%EB%8A%94-%EC%9D%B8%EC%83%9D%EC%83%B7-%ED%8C%81">📝 글리코상 명당</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Osaka+Shinsaibashi+Shopping+Street">신사이바시스지 상점가</a><span class="rb cool">실내·쇼핑</span></div><div class="it-m">신사이바시역 바로 · 무료</div><div class="it-d">600m 아케이드 쇼핑 1번지. 지붕 덮여 8월 더위·비 대피 최적.</div><a class="it-s" href="https://www.tripstore.kr/blog/%EC%9D%BC%EB%B3%B8-%EC%98%A4%EC%82%AC%EC%B9%B4-%EA%B4%80%EA%B4%91-3%EB%B0%954%EC%9D%BC-%EC%B6%94%EC%B2%9C-%EC%BD%94%EC%8A%A4-%EC%9D%BC%EC%A0%95-%EC%B4%9D%EC%A0%95%EB%A6%AC">📝 코스</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Osaka+Castle">오사카성 & 공원</a><span class="rb warm">야외·아침</span></div><div class="it-m">오사카조코엔역 · 천수각 600엔</div><div class="it-d">일본 3대 성, 8층 전망대. 그늘 적어 이른 아침 권장.</div><a class="it-s" href="https://www.tripstore.kr/blog/%EC%9D%BC%EB%B3%B8-%EC%98%A4%EC%82%AC%EC%B9%B4-%EA%B4%80%EA%B4%91%EC%A7%80-%EB%AA%85%EC%86%8C-%EA%BF%80%ED%8C%81">📝 코스</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Umeda+Sky+Building+Kuchu+Teien+Observatory">우메다 스카이빌딩 공중정원</a><span class="rb warm">야경</span></div><div class="it-m">오사카역 도보 7분 · 2,000엔</div><div class="it-d">173m 도넛형 옥상 전망대. 일몰 30분 전 입장이 황금타임, 사전 예약.</div><a class="it-s" href="https://www.skybldg.co.jp/ko/">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Osaka+Shinsekai+Tsutenkaku">신세카이 & 츠텐카쿠</a><span class="rb warm">레트로</span></div><div class="it-m">에비스초역 도보 3분 · 타워 1,000엔</div><div class="it-d">쇼와 레트로 거리+쿠시카츠 본고장. 도톤보리와 다른 결의 포토존.</div><a class="it-s" href="https://www.tripstore.kr/blog/%EC%9D%BC%EB%B3%B8-%EC%98%A4%EC%82%AC%EC%B9%B4-%EA%B4%80%EA%B4%91%EC%A7%80-%EB%AA%85%EC%86%8C-%EA%BF%80%ED%8C%81">📝 가이드</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=HEP+FIVE+Ferris+Wheel+Osaka">헵파이브 빨간 관람차</a><span class="rb warm">포토</span></div><div class="it-m">우메다역 도보 3~5분 · 700엔</div><div class="it-d">빌딩 옥상 빨간 관람차, SNS 인생샷. 해질녘 탑승이 야경+체감 유리.</div><a class="it-s" href="https://kr.trip.com/moments/detail/osaka-293-133081636/">📝 인생샷</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Osaka+Nakazakicho">나카자키초 레트로 골목</a><span class="rb cool">숨은곳·카페</span></div><div class="it-m">나카자키초역 바로 · 무료</div><div class="it-d">우메다 옆 레트로 골목, 개조 가옥 카페·소품샵. 감성 인생샷.</div><a class="it-s" href="https://www.travie.com/news/articleView.html?idxno=53857">📝 핫플5</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Universal+Studios+Japan+Osaka">유니버설 스튜디오(USJ)</a><span class="rb hot">하루·테마파크</span></div><div class="it-m">유니버설시티역 · 8,600엔~</div><div class="it-d">슈퍼 닌텐도 월드·해리포터. 8월 성수기 익스프레스 패스+e정리권·오픈런 필수.</div><a class="it-s" href="https://kr.trip.com/blog/japan-universal-express-pass-guide/">📝 USJ 꿀팁</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Nara+Park+Todaiji">나라 공원·도다이지</a><span class="rb hot">당일치기</span></div><div class="it-m">긴테츠 40~50분 · 대불전 800엔</div><div class="it-d">사슴 1,200마리+도다이지 대불. 사슴 인사 인생샷, 이른 아침 출발.</div><a class="it-s" href="https://toppress.kr/%EC%98%A4%EC%82%AC%EC%B9%B4-%EA%B5%90%ED%86%A0-%EA%B7%BC%EA%B5%90-%EC%97%AC%ED%96%89%EC%A7%80-%EA%B3%A0%EB%AF%BC-%EB%81%9D-%EB%82%98%EB%9D%BC-%EB%8B%B9%EC%9D%BC%EC%B9%98%EA%B8%B0-%EC%99%84%EB%B2%BD/">📝 나라 가이드</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Fushimi+Inari+Taisha+Kyoto">교토 후시미이나리·아라시야마</a><span class="rb hot">당일치기</span></div><div class="it-m">오사카서 40분~1시간 · 무료</div><div class="it-d">천 개의 붉은 도리이+대나무숲. 분지라 더 더움 → 새벽~오전 강력 권장.</div><a class="it-s" href="https://kr.trip.com/blog/kyoto-itinerarytrip/">📝 교토 코스</a></div>
+        </div>
+      </details>
+
+      <details class="sec"><summary><span class="lab"><span class="n">📺 참고 영상 & 블로그</span></span><span class="more"></span></summary>
+        <div class="refbox">
+          <a href="https://www.youtube.com/shorts/zJeTfGAA3WU"><span>📺</span> 도톤보리 맛집 10군데 — 오사카 초보 추천</a>
+          <a href="https://brunch.co.kr/@kkday/399"><span>📝</span> 웨이팅 짧은 도톤보리 맛집 BEST8 — KKday</a>
+          <a href="https://www.kkday.com/ko/blog/36585/asia-japan-osaka-travelcourse34"><span>📝</span> 2025 오사카 3박4일 코스·경비 — KKday</a>
+          <a href="https://www.tripstore.kr/blog/osaka-kansai-travel-itinerary"><span>📝</span> 오사카·간사이 3박4일 코스 — 트립스토어</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- ============ 도쿄 ============ -->
+    <div class="panel" id="tokyo">
+      <div class="phead"><h3 class="serif">도쿄 · 간토</h3><span class="bd">볼거리 최다</span></div>
+      <p class="pone">신주쿠 거점 + 하코네·가와고에 당일치기. 먹거리·도심 관광·근교를 한 번에 — 첫 도쿄·그룹에게 딱.</p>
+      <div class="gauge"><span style="font-size:22px">🌡️</span><div><span class="big serif">31°</span> <span class="lo">/ 최저 24°</span></div><div class="note">덥고 습함<br>한낮은 실내·미술관</div></div>
+
+      <div class="block">
+        <h4><span class="n">01</span> 항공 · 김포 → 하네다 직항 추천</h4>
+        <a class="naver" href="https://flight.naver.com/flights/international/GMP-HND-20260803/HND-GMP-20260806?adult=3"><span class="nb">N</span> 네이버에서 GMP–HND 3명 바로 검색</a>
+        <p class="altlink">예산 우선이면 <a href="https://flight.naver.com/flights/international/ICN-NRT-20260803/NRT-ICN-20260806?adult=3">ICN–나리타 LCC</a> · GMP–HND는 도심 양끝 근접·하루 약 12편</p>
+        <table>
+          <tr><th>등급</th><th>노선</th><th class="nc">1인 왕복</th></tr>
+          <tr><td>가성비</td><td>ICN→나리타 (LCC)</td><td class="nc">약 24만</td></tr>
+          <tr><td>중간</td><td>ICN→하네다</td><td class="nc">약 32만</td></tr>
+          <tr class="hl"><td class="rc">여유 ★</td><td>GMP→하네다 (FSC)</td><td class="nc">약 42만</td></tr>
+        </table>
+      </div>
+
+      <div class="block">
+        <h4><span class="n">02</span> 동선 한눈에</h4>
+        <div class="board">
+          <div class="dcol"><div class="dch"><span class="dn">1</span><span class="dd">8/3 월<br>도착</span></div>
+            <div class="stop"><div class="stt">오후</div><div class="sps">🛬 신주쿠 체크인</div></div><div class="conn">🚌 리무진 45분</div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🌃 도쿄도청 무료 전망대</div></div></div>
+          <div class="dcol"><div class="dch"><span class="dn">2</span><span class="dd">8/4 화<br>동부+시부야</span></div>
+            <div class="stop"><div class="stt">오전</div><div class="sps">⛩️ 아사쿠사 센소지</div></div>
+            <div class="stop"><div class="stt">낮</div><div class="sps">🍤 텐동·teamLab</div></div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🏙 시부야·SHIBUYA SKY</div></div></div>
+          <div class="dcol"><div class="dch"><span class="dn">3</span><span class="dd">8/5 수<br>하코네</span></div>
+            <div class="stop"><div class="stt">오전</div><div class="sps">🚞 로망스카(예약)</div></div><div class="conn">♨️ 오와쿠다니</div>
+            <div class="stop"><div class="stt">낮</div><div class="sps">🖼 폴라/조각의 숲</div></div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🍜 신주쿠 복귀</div></div></div>
+          <div class="dcol"><div class="dch"><span class="dn">4</span><span class="dd">8/6 목<br>출발</span></div>
+            <div class="stop"><div class="stt">오전</div><div class="sps">🌳 메이지신궁·하라주쿠</div></div>
+            <div class="stop"><div class="stt">점심</div><div class="sps">🍮 긴자·시세이도 팔러</div></div><div class="conn">🚌 리무진 45분</div>
+            <div class="stop"><div class="stt">저녁</div><div class="sps">🛫 출발</div></div></div>
+        </div>
+        <div class="scrollhint">← 좌우로 밀어서 4일 보기 →</div>
+      </div>
+
+      <details class="sec"><summary><span class="lab"><span class="n">🏨 숙소</span> 추천 6곳 · 신주쿠/시부야</span><span class="more"></span></summary>
+        <div class="itwrap">
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=MIMARU+TOKYO+SHINJUKU+WEST">미마루 도쿄 신주쿠 웨스트</a><span class="rb warm">아파트형★</span></div><div class="it-m">니시신주쿠고초메역 도보 3분 · 트리플 4~6만엔</div><div class="it-d">32~37㎡ 넓은 객실+주방, 트리플룸 정식 보유. 3인 한 방 가장 깔끔.</div><a class="it-s" href="https://kr.trip.com/hotels/tokyo-hotel-detail-54552657/mimaru-tokyo-shinjuku-west/">📝 트립닷컴</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Hotel+Gracery+Shinjuku">호텔 그레이스리 신주쿠 (고질라)</a><span class="rb warm">중간·중심</span></div><div class="it-m">JR 신주쿠역 도보 5분 · 트윈 3~4.5만엔</div><div class="it-d">가부키초 한복판 고질라 호텔. 5개국어 응대, 트리플/엑스트라 확인.</div><a class="it-s" href="https://kr.trip.com/hotels/tokyo-hotel-detail-1841600/hotel-gracery-shinjuku-tokyo/">📝 트립닷컴</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Tokyu+Stay+Shinjuku">도큐스테이 신주쿠</a><span class="rb warm">중간·세탁기</span></div><div class="it-m">신주쿠산초메역 도보 3~5분 · 트윈 2.5~4만엔</div><div class="it-d">객실 내 세탁·건조기+전자레인지. 3박 여행에 큰 장점.</div><a class="it-s" href="https://kr.trip.com/hotels/tokyo-hotel-detail-2509720/tokyu-stay-shinjuku/">📝 트립닷컴</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Dormy+Inn+Premium+Shibuya+Jingumae">도미인 프리미엄 시부야 진구마에</a><span class="rb warm">온천·시부야</span></div><div class="it-m">메이지진구마에역 도보 5분 · 3~4.5만엔</div><div class="it-d">대욕장·사우나+무료 야식 소바. 하라주쿠·시부야 도보권.</div><a class="it-s" href="https://www.agoda.com/ko-kr/dormy-inn-premium-shibuya-jingumae-hot-spring/hotel/tokyo-jp.html">📝 아고다</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Tamayura+Hotel+Asakusa">타마유라 호텔 아사쿠사</a><span class="rb cool">가성비·아사쿠사</span></div><div class="it-m">아사쿠사역 도보 5분 · 2~3.5만엔</div><div class="it-d">아사쿠사 가성비 1순위, 다다미 객실 3인 이불 추가. 9층서 스카이트리 야경.</div><a class="it-s" href="https://kr.trip.com/hotels/tokyo-hotel-detail-1483531/tamayura-hotel-asakusa/">📝 트립닷컴</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Keio+Plaza+Hotel+Tokyo+Shinjuku">게이오 플라자 호텔 도쿄</a><span class="rb hot">고급·트리플</span></div><div class="it-m">신주쿠역 도보 5분 · 4~7만엔</div><div class="it-d">대형 4성, 정식 트리플·패밀리룸. 하코네 로망스카 거점, 디즈니 셔틀.</div><a class="it-s" href="https://www.keioplaza.com/kr/">🏠 공식</a></div>
+        </div>
+      </details>
+
+      <div class="block">
+        <h4><span class="n">03</span> 예산 + 교통비 상세 (1인)</h4>
+        <table>
+          <tr><th>항목</th><th class="nc">가성비</th><th class="nc">중간</th><th class="nc">여유</th></tr>
+          <tr><td>항공</td><td class="nc">24</td><td class="nc">32</td><td class="nc">42</td></tr>
+          <tr><td>숙소</td><td class="nc">17</td><td class="nc">37</td><td class="nc">64</td></tr>
+          <tr><td>식비</td><td class="nc">12</td><td class="nc">20</td><td class="nc">35</td></tr>
+          <tr><td>교통 ▼</td><td class="nc">12</td><td class="nc">13</td><td class="nc">13</td></tr>
+          <tr><td>기타</td><td class="nc">6</td><td class="nc">10</td><td class="nc">18</td></tr>
+          <tr class="hl"><td>1인 합계</td><td class="nc">약 71만</td><td class="nc">약 112만</td><td class="nc">약 172만</td></tr>
+          <tr><td>3인 총액</td><td class="nc">213만</td><td class="nc">336만</td><td class="nc">516만</td></tr>
+        </table>
+        <table style="margin-top:12px">
+          <tr><th>교통 (1인)</th><th class="nc">대략</th></tr>
+          <tr><td>하네다↔신주쿠 왕복(리무진)</td><td class="nc">~2,880엔</td></tr>
+          <tr><td>시내 Suica</td><td class="nc">~2,500엔</td></tr>
+          <tr><td>하코네 프리패스+로망스카</td><td class="nc">~9,500엔</td></tr>
+          <tr><td>합계</td><td class="nc rc">약 13만원 · JR패스 불필요</td></tr>
+        </table>
+        <p class="note">💡 하코네 당일치기(~9,500엔)가 교통비 핵심. 시내만 다니면 ~4만원. teamLab·시부야스카이 등 입장료 별도.</p>
+      </div>
+
+      <details class="sec"><summary><span class="lab"><span class="n">🍜 맛집</span> 10곳 · 스시·라멘·디저트</span><span class="more"></span></summary>
+        <div class="itwrap">
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=東京+銀座久兵衛+銀座本店">긴자 큐베이 (스시)</a><span class="rb hot">예약필수·고급</span></div><div class="it-m">긴자/신바시 · 런치 15,000엔~</div><div class="it-d">1935년 에도마에 스시 근본. 우니 군함말이 원조, '인생 스시' 한 끼.</div><a class="it-s" href="https://tabelog.com/en/tokyo/A1301/A130103/13002611/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=東京+梅丘寿司の美登利+銀座店">우메가오카 미도리스시</a><span class="rb cool">줄서기·가성비</span></div><div class="it-m">긴자·시부야 등 · 1인 2,000~3,500엔</div><div class="it-d">'가성비 스시' 대명사, 넘치는 큰 네타. 번호표 후 비피크 노리기.</div><a class="it-s" href="https://tabelog.com/en/tokyo/A1301/A130101/13004995/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=東京+回し寿司+活+美登利+西武渋谷店">카츠 미도리 회전초밥 (시부야)</a><span class="rb cool">줄서기</span></div><div class="it-m">세이부 시부야 8F · 접시 100~500엔</div><div class="it-d">미도리 회전초밥 라인. 신선·가성비, 터치패널 다국어. 비피크 권장.</div><a class="it-s" href="https://tabelog.com/en/tokyo/A1303/A130301/13135066/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=東京+AFURI+原宿">AFURI 하라주쿠 (유즈 라멘)</a><span class="rb cool">워크인</span></div><div class="it-m">하라주쿠역 도보 3분 · 1,300~1,600엔</div><div class="it-d">유자향 황금빛 유즈시오 라멘, 깔끔. 더운 날 차가운 츠케멘도.</div><a class="it-s" href="https://tabelog.com/en/tokyo/A1306/A130601/13095244/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=東京+浅草+三定+天丼">산사다 (아사쿠사 텐동)</a><span class="rb cool">노포</span></div><div class="it-m">센소지 가미나리몬 옆 · 2,000~3,500엔</div><div class="it-d">1837년 '텐동 원조'. 참기름 진한 에도마에 텐푸라, 관광 동선과 연결.</div><a class="it-s" href="https://www.tsunagujapan.com/ko/tokyo-tendon-restaurant-best-3/">📝 텐동 BEST3</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=東京+野田岩+麻布飯倉本店">노다이와 (우나기 노포)</a><span class="rb warm">예약권장</span></div><div class="it-m">아카바네바시역 · 우나주 5,000~10,000엔</div><div class="it-d">200년 장어 노포, 부드러운 도쿄식 우나주. 8월 장어 성수기.</div><a class="it-s" href="https://tabelog.com/en/tokyo/A1314/A131401/13002789/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=東京+牛かつもと村+新宿南口店">규카츠 모토무라 신주쿠</a><span class="rb cool">가성비</span></div><div class="it-m">신주쿠산초메역 · 정식 1,000~1,999엔</div><div class="it-d">미디엄레어 규카츠를 돌화로에 직접 구워. 한국어 메뉴, 든든·가성비.</div><a class="it-s" href="https://tabelog.com/en/tokyo/A1304/A130401/13185438/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=東京+挽肉と米+渋谷">히키니쿠토코메 시부야</a><span class="rb hot">온라인예약</span></div><div class="it-m">시부야 도겐자카 · 정식 1,600엔</div><div class="it-d">숯불 즉석 함바그+가마솥밥, SNS 바이럴. 금 9~11시 온라인 예약 필수.</div><a class="it-s" href="https://tabelog.com/en/tokyo/A1303/A130301/13257261/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=東京+資生堂パーラー+銀座本店">시세이도 파라 긴자 본점</a><span class="rb cool">디저트</span></div><div class="it-m">긴자 · 파르페 1,500~3,000엔</div><div class="it-d">1902년 긴자 상징. 제철 과일 파르페, 클래식한 디저트 타임.</div><a class="it-s" href="https://tabelog.com/en/tokyo/A1301/A130101/13004938/">🍽 타베로그</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=東京+新宿+思い出横丁">오모이데요코초 / 골든가이 (야식)</a><span class="rb cool">야식·골목</span></div><div class="it-m">신주쿠역 서쪽 · 1인 2,000~4,000엔</div><div class="it-d">레트로 야식 골목, 야키토리·맥주. 도쿄 밤 분위기 야식 코스.</div><a class="it-s" href="https://www.gotokyo.org/kr/spot/63/index.html">🏠 공식</a></div>
+        </div>
+      </details>
+
+      <details class="sec"><summary><span class="lab"><span class="n">📸 여행지</span> 10곳 · 전망·포토·당일치기</span><span class="more"></span></summary>
+        <div class="itwrap">
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Tokyo+SHIBUYA+SKY">시부야 스카이</a><span class="rb warm">야경·예약</span></div><div class="it-m">시부야역 직결 · 3,000~3,700엔</div><div class="it-d">229m 옥상 야외 전망대, 도쿄 No.1 포토스팟. 일몰대 조기 매진, 예약.</div><a class="it-s" href="https://hellotaco.kr/shibuya-sky-observatory-review/">📝 후기</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Tokyo+Shibuya+Scramble+Crossing">시부야 스크램블 교차로</a><span class="rb warm">야외·무료</span></div><div class="it-m">시부야역 하치코 출구 · 무료</div><div class="it-d">세계서 가장 유명한 교차로. 스타벅스 츠타야 2층서 인파 영상, 하치코.</div><a class="it-s" href="https://www.gotokyo.org/kr/best-attractions/index.html">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Tokyo+teamLab+Planets+TOKYO+Toyosu">teamLab Planets (도요스)</a><span class="rb cool">실내·포토·예약</span></div><div class="it-m">신토요스역 도보 1분 · 약 3,800엔</div><div class="it-d">물에 들어가는 몰입형 디지털아트, 인생샷 성지. 8월 피난처, 예약 필수.</div><a class="it-s" href="https://www.teamlab.art/e/planets/">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Tokyo+Sensoji+Temple+Asakusa">센소지 & 나카미세도리</a><span class="rb warm">야외·전통</span></div><div class="it-m">아사쿠사역 도보 5분 · 무료</div><div class="it-d">도쿄 최고(古) 사찰, 카미나리몬·상점가. 문화관광센터 8층 무료 전망 꿀팁.</div><a class="it-s" href="https://shortmouthnagne.com/entry/%EB%8F%84%EC%BF%84%EC%97%AC%ED%96%89-%EC%95%84%EC%82%AC%EC%BF%A0%EC%82%AC-%EC%84%BC%EC%86%8C%EC%A7%80-%EC%A0%95%EB%B3%B4%EA%BF%80%ED%8C%81-%ED%9B%84%EA%B8%B0%EB%82%98%EC%B9%B4%EB%AF%B8%EC%84%B8%EB%8F%84%EB%A6%AC%EC%9A%B4%EC%84%B8%EB%BD%91%EA%B8%B0%EB%A8%B9%EA%B1%B0%EB%A6%AC-%ED%8F%AC%EC%B0%A8%EA%B3%A8%EB%AA%A9">📝 후기</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Tokyo+Skytree">도쿄 스카이트리 & 소라마치</a><span class="rb cool">실내·야경</span></div><div class="it-m">스카이트리역 직결 · 2,100엔~</div><div class="it-d">634m 최고층 타워, 유리바닥 포토존. 일몰 1시간 전 입장, 우천에 강함.</div><a class="it-s" href="https://www.tripstore.kr/blog/%EB%8F%84%EC%BF%84-%EC%8A%A4%EC%B9%B4%EC%9D%B4%ED%8A%B8%EB%A6%AC-%EC%A0%84%EB%A7%9D%EB%8C%80-%EC%95%BC%EA%B2%BD-%EC%9D%BC%EB%AA%B0-%EA%B3%B5%EB%9E%B5%EB%B2%95">📝 야경 가이드</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Tokyo+Shimokitazawa">시모키타자와</a><span class="rb cool">숨은곳·빈티지</span></div><div class="it-m">시부야서 전철 3분 · 무료</div><div class="it-d">빈티지·독립카페·스파이스카레 성지. 로컬 감성 골목, 반나절 코스.</div><a class="it-s" href="https://hellotaco.kr/shimokitazawa-tokyo-half-day-walking-guide/">📝 코스</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Tokyo+Shinjuku+Gyoen+National+Garden">신주쿠 교엔</a><span class="rb warm">야외·힐링</span></div><div class="it-m">신주쿠교엔마에역 도보 5분 · 500엔</div><div class="it-d">일본·서양식 정원+잔디밭. 큰 나무 그늘서 여유로운 인물샷.</div><a class="it-s" href="https://www.gotokyo.org/kr/spot/75/index.html">🏠 공식</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Tokyo+MIYASHITA+PARK+Shibuya">미야시타 파크</a><span class="rb warm">신상핫플</span></div><div class="it-m">시부야역 도보권 · 공원 무료</div><div class="it-d">옥상 공원+쇼핑+포장마차(시부야 요코초). 트렌디 사진+야간 한 잔.</div><a class="it-s" href="https://kr.trip.com/blog/tokyo-new-place/">📝 신상 핫플</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Kawagoe+Kurazukuri+Old+Town+Toki+no+Kane">가와고에 '작은 에도'</a><span class="rb hot">당일치기</span></div><div class="it-m">이케부쿠로서 30분 · 무료</div><div class="it-d">에도 창고거리+시간의 종+과자골목. 기모노 인생샷, 근교 당일치기.</div><a class="it-s" href="https://www.youtube.com/watch?v=miPoftOfyhs">📺 가와고에 총정리</a></div>
+          <div class="it"><div class="it-h"><a class="it-n" href="https://www.google.com/maps/search/?api=1&query=Jingu+Gaien+Fireworks+Festival+Tokyo">진구가이엔 불꽃축제</a><span class="rb acc">8월 이벤트</span></div><div class="it-m">시나노마치역 도보 5분 · 유료석 7,000엔~</div><div class="it-d">약 1만 발 도심 불꽃+라이브. 2025년 8/16, 2026 날짜 공식 확인.</div><a class="it-s" href="https://www.gotokyo.org/kr/story/guide/the-best-festivals-in-tokyo-and-japan/index.html">🏠 공식</a></div>
+        </div>
+      </details>
+
+      <details class="sec"><summary><span class="lab"><span class="n">📺 참고 영상 & 블로그</span></span><span class="more"></span></summary>
+        <div class="refbox">
+          <a href="https://www.youtube.com/watch?v=pAumiLScRmQ"><span>📺</span> 도쿄사는 내가 준비한 3박4일 완벽 코스</a>
+          <a href="https://www.youtube.com/watch?v=Iaqu52Mkq84"><span>📺</span> 도쿄 첫 여행 J의 성공 코스·맛집·가마쿠라</a>
+          <a href="https://www.tripstore.kr/blog/%EB%8F%84%EC%BF%84-3%EB%B0%95-4%EC%9D%BC-%EC%97%AC%ED%96%89-%EC%BD%94%EC%8A%A4-%EC%8B%A4%ED%8C%A8-%EC%97%86%EB%8A%94-%EC%9D%BC%EC%A0%95%EA%B3%BC-%EA%B2%BD%EB%B9%84-%EC%B4%9D%EC%A0%95%EB%A6%AC"><span>📝</span> 도쿄 3박4일 코스·경비 — 트립스토어</a>
+          <a href="https://kr.trip.com/blog/tokyo-new-place/"><span>📝</span> 도쿄 신상 핫플 BEST18 — 트립닷컴</a>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="sk">함께 준비하기</div>
+    <h2 class="st serif">예약 체크리스트</h2>
+    <p class="ss">탭하면 체크돼요. 셋이서 역할 나눠 진행 — <b>지금이 항공·숙소 매수 적기</b>(출발 약 2개월 전).</p>
+    <div class="check" id="check">
+      <h4>지금 (D-60)</h4>
+      <label><input type="checkbox"><span>목적지 확정 (위 비교표로 투표)</span></label>
+      <label><input type="checkbox"><span>항공권 3매 동시 예약 (네이버 링크, 같은 PNR)</span></label>
+      <div class="sub">LCC는 수하물·좌석 포함 총액으로 비교, 3석 일괄 지정</div>
+      <label><input type="checkbox"><span>숙소 트리플룸 예약 — 무료취소 요금으로 먼저 확보</span></label>
+      <div class="sub">3명은 트리플룸(또는 아파트형) 검색이 1인당 가장 저렴</div>
+      <h4>D-14 ~ D-7</h4>
+      <label><input type="checkbox"><span>예약 필수 맛집 (미즈타키 / 게 코스 / 큐베이 / 히키니쿠토코메 등)</span></label>
+      <label><input type="checkbox"><span>당일치기·전망대·teamLab 예약 (로망스카·시부야스카이·버스투어)</span></label>
+      <label><input type="checkbox"><span>여행자보험 · eSIM/포켓와이파이 · 트래블카드·엔화</span></label>
+      <h4>D-1</h4>
+      <label><input type="checkbox"><span>기상·태풍 재확인 · 온라인 체크인 · 터미널 확인</span></label>
+    </div>
+    <p class="note">⚠ 모든 가격·시간은 <b>대표값(2026-06-10 기준)</b>. 항공 운임은 네이버 링크, 식당 영업·예약은 구글맵/출처 링크에서 방문 전 재확인하세요. 8월 불꽃축제·이벤트 날짜는 매년 변동되니 공식 일정 확인 필수.</p>
+  </section>
+
+  <footer>
+    <div class="big serif">좋은 여행 되세요 · よい旅を ✈️</div>
+    <div>친구 3명 · 3박4일 · 2026년 8월 · 서울 출발<br>후쿠오카 · 삿포로 · 오사카 · 도쿄 비교 플랜<br>자료조사: 유튜브 · 네이버 블로그 · 타베로그 · 공식 관광</div>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    var tabs=document.querySelectorAll('.tab'),panels=document.querySelectorAll('.panel');
+    tabs.forEach(function(t){t.addEventListener('click',function(){
+      var id=t.getAttribute('data-t');
+      tabs.forEach(function(x){x.classList.remove('on');x.classList.toggle('rec',x.getAttribute('data-t')==='fukuoka');});
+      t.classList.add('on');
+      panels.forEach(function(p){p.classList.toggle('on',p.id===id);});
+      var bar=document.getElementById('tabbar'); if(bar){window.scrollTo({top:bar.offsetTop-4,behavior:'smooth'});}
+    });});
+    document.querySelectorAll('#check label input').forEach(function(c){
+      c.addEventListener('change',function(){c.closest('label').classList.toggle('done',c.checked);});
+    });
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.06});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  })();
+</script>
+</body>
+</html>
