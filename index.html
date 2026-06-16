@@ -1470,10 +1470,14 @@
       $all('.vq',card).forEach(function(vq){ lines.push('· '+vq.dataset.q+': '+(saved[vq.dataset.q]||'(아직 미정)')); });
       lines.push(location.href.split('#')[0]);
       var txt=lines.join('\n');
-      function done(){ sb.textContent='✅ 복사됨 — 단톡에 붙여넣기!'; setTimeout(function(){ sb.innerHTML=orig; },2400); }
-      if(navigator.share){ navigator.share({text:txt}).then(done).catch(function(){}); }
-      else if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(function(){ window.prompt('복사해서 단톡에 붙여넣기:',txt); }); }
-      else { window.prompt('복사해서 단톡에 붙여넣기:',txt); }
+      function done(msg){ sb.textContent=msg||'✅ 복사됨 — 단톡에 붙여넣기!'; setTimeout(function(){ sb.innerHTML=orig; },2400); }
+      function copyIt(){
+        if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){ done(); }).catch(function(){ window.prompt('아래 내용을 복사해 단톡에 붙여넣기:',txt); }); }
+        else { window.prompt('아래 내용을 복사해 단톡에 붙여넣기:',txt); }
+      }
+      var isMobile=/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if(isMobile && navigator.share){ navigator.share({text:txt}).then(function(){ done('✅ 공유 완료!'); }).catch(copyIt); }
+      else { copyIt(); }
     });
   })();
 })();
