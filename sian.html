@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>시안 — 후쿠오카 페이지 히어로 &amp; 내비</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--sans:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif}
+  body{font-family:var(--sans);background:#ECECEC;color:#1c1c1c;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .page{max-width:460px;margin:0 auto;padding:18px 14px 80px}
+  .pgh{text-align:center;padding:14px 8px 6px}
+  .pgh h1{font-family:'Nanum Myeongjo',serif;font-size:24px;font-weight:800}
+  .pgh p{font-size:13px;color:#555;margin-top:6px}
+  .grp{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#999;font-weight:700;margin:34px 4px 10px}
+  .lab{display:flex;align-items:center;gap:8px;margin:0 2px 8px}
+  .lab .id{font-family:'Nanum Myeongjo',serif;font-weight:800;font-size:15px;background:#1c1c1c;color:#fff;border-radius:8px;padding:3px 10px}
+  .lab .nm{font-weight:700;font-size:14.5px}
+  .lab .ds{font-size:12px;color:#666}
+  .frame{border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.14);border:1px solid rgba(0,0,0,.06)}
+  .pal{display:flex;gap:6px;margin:8px 2px 0}
+  .pal i{width:22px;height:22px;border-radius:6px;border:1px solid rgba(0,0,0,.1)}
+
+  /* ===== HERO A — 야타이 네온 ===== */
+  .hA{position:relative;background:#0A0C11;color:#fff;text-align:center;padding:50px 22px 44px;overflow:hidden}
+  .hA::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(60% 40% at 22% 18%,rgba(255,77,126,.35),transparent 60%),
+    radial-gradient(55% 45% at 82% 30%,rgba(54,226,208,.28),transparent 60%)}
+  .hA .in{position:relative;z-index:2}
+  .hA .lant{font-size:26px;letter-spacing:.5em;margin-bottom:14px}
+  .hA .ko{font-family:'Nanum Myeongjo',serif;font-weight:800;font-size:42px;line-height:1.05}
+  .hA .ko em{font-style:normal;color:#FF4D7E;text-shadow:0 0 18px rgba(255,77,126,.7)}
+  .hA .neon{font-family:'Nanum Myeongjo',serif;font-size:60px;font-weight:800;color:transparent;
+    -webkit-text-stroke:1.5px #36E2D0;text-shadow:0 0 22px rgba(54,226,208,.55);margin:6px 0 2px;letter-spacing:.04em}
+  .hA .dt{font-size:13px;color:#cfd6e0;letter-spacing:.05em;margin-top:10px}
+  .hA .dt b{color:#FFC24B}
+  .hA .chips{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+  .hA .chip{font-size:11.5px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);border-radius:999px;padding:6px 12px}
+  .hA .chip b{color:#36E2D0}
+
+  /* ===== HERO B — 여름 와시 미니멀 ===== */
+  .hB{position:relative;background:#F7F4EC;color:#23304a;padding:48px 24px 40px;text-align:left;overflow:hidden}
+  .hB .stamp{position:absolute;top:30px;right:24px;width:52px;height:52px;border:2px solid #C8472E;color:#C8472E;border-radius:8px;
+    font-family:'Nanum Myeongjo',serif;font-weight:800;font-size:26px;display:flex;align-items:center;justify-content:center;transform:rotate(-6deg);opacity:.9}
+  .hB .ey{font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:#9a8e74;font-weight:700}
+  .hB .big{font-family:'Nanum Myeongjo',serif;font-weight:800;font-size:54px;line-height:1.02;margin-top:14px;letter-spacing:-.01em}
+  .hB .sub{font-size:14px;color:#5b6ب;color:#5b6478;margin-top:14px;max-width:300px}
+  .hB .line{width:48px;height:3px;background:#1C3A5E;margin:20px 0 0}
+  .hB .meta{display:flex;gap:18px;margin-top:18px;font-size:12.5px;color:#5b6478}
+  .hB .meta b{color:#23304a;font-family:'Nanum Myeongjo',serif;font-size:15px}
+  .hB .dot{color:#E08A5B}
+
+  /* ===== HERO C — 레트로 선셋 포스터 ===== */
+  .hC{position:relative;background:linear-gradient(165deg,#FFB36B 0%,#FF6B57 42%,#C9447E 78%,#5B2A6B 100%);color:#fff;
+    text-align:center;padding:44px 20px 40px;overflow:hidden}
+  .hC .sun{position:absolute;top:64px;left:50%;transform:translateX(-50%);width:140px;height:140px;border-radius:50%;
+    background:radial-gradient(circle,#FFE08A,#FFC24B);box-shadow:0 0 60px rgba(255,224,138,.6)}
+  .hC .rays{position:absolute;top:0;left:0;right:0;height:200px;opacity:.5}
+  .hC .in{position:relative;z-index:2}
+  .hC .tagtop{font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:#FFE08A;margin-bottom:120px}
+  .hC .disp{font-family:'Black Han Sans',sans-serif;font-size:58px;line-height:.96;letter-spacing:.01em;text-shadow:3px 3px 0 rgba(91,42,107,.4)}
+  .hC .disp .y{color:#FFE08A}
+  .hC .ticket{display:inline-flex;align-items:center;gap:12px;background:#fff;color:#C9447E;border-radius:10px;padding:9px 16px;margin-top:18px;font-weight:800;box-shadow:0 6px 0 rgba(91,42,107,.35)}
+  .hC .ticket .d{font-family:'Black Han Sans',sans-serif;font-size:22px}
+  .hC .ticket .s{font-size:12px;color:#7a3a5a;font-weight:600;border-left:2px dashed #e3a9c2;padding-left:12px}
+  .hC .who{font-size:13px;margin-top:14px;color:#fff;opacity:.92}
+
+  /* ===== HERO D — 포토 이머시브 ===== */
+  .hD{position:relative;min-height:520px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;overflow:hidden;background:#222}
+  .hD img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hD .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,16,.45) 0%,rgba(10,10,16,0) 30%,rgba(10,10,16,.2) 55%,rgba(10,10,16,.92) 100%)}
+  .hD .in{position:relative;z-index:2;padding:26px 22px 30px}
+  .hD .ey{font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;color:#FFC24B;font-weight:700}
+  .hD .ko{font-family:'Nanum Myeongjo',serif;font-weight:800;font-size:46px;line-height:1.05;margin-top:10px}
+  .hD .ko em{font-style:normal;color:#FFC24B}
+  .hD .row{display:flex;align-items:center;gap:12px;margin-top:14px;font-size:13px;color:#e7e7ea}
+  .hD .row .pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 12px;font-weight:600}
+  .hD .row .pill b{color:#FFC24B}
+
+  /* ===== NAV 시안 ===== */
+  .navbox{background:#FBF5E9;border-radius:16px;padding:0;overflow:hidden;border:1px solid rgba(0,0,0,.07)}
+  /* nav1 minimal text */
+  .nv1{display:flex;gap:0;align-items:center;overflow-x:auto;padding:14px 16px;scrollbar-width:none}
+  .nv1::-webkit-scrollbar{display:none}
+  .nv1 a{flex:0 0 auto;font-size:14px;color:#5b6478;font-weight:600;padding:4px 0;position:relative;white-space:nowrap}
+  .nv1 .sep{flex:0 0 auto;color:#cdbfa6;margin:0 12px}
+  .nv1 a.on{color:#C8472E}
+  .nv1 a.on::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:#C8472E}
+  /* nav2 icon-top chips */
+  .nv2{display:flex;gap:8px;overflow-x:auto;padding:12px 14px;scrollbar-width:none}
+  .nv2::-webkit-scrollbar{display:none}
+  .nv2 a{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:3px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:8px 13px;min-width:60px}
+  .nv2 a .i{font-size:18px;line-height:1}
+  .nv2 a .t{font-size:11px;color:#5b6478;font-weight:600}
+  .nv2 a.on{background:#1C2636;border-color:#1C2636}
+  .nv2 a.on .t{color:#fff}
+  .nv2 a.fire{background:#D7472B;border-color:#D7472B}.nv2 a.fire .t{color:#fff}
+  /* nav3 number index */
+  .nv3{display:flex;gap:18px;overflow-x:auto;padding:14px 16px;scrollbar-width:none}
+  .nv3::-webkit-scrollbar{display:none}
+  .nv3 a{flex:0 0 auto;display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+  .nv3 a .nu{font-family:'Nanum Myeongjo',serif;font-size:11px;color:#b9a98a;font-weight:700}
+  .nv3 a .t{font-size:14px;color:#46506A;font-weight:600}
+  .nv3 a.on .t{color:#C8472E}
+  .nv3 a.on .nu{color:#C8472E}
+  .nvcap{font-size:11.5px;color:#777;margin:7px 4px 0}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="pgh">
+    <h1 class="serif" style="font-family:'Nanum Myeongjo',serif">시안 고르기</h1>
+    <p>히어로 4종 · 내비게이션 표기 3종<br>마음에 드는 걸 알려주세요 (예: "히어로 C + 내비 2", 섞어도 OK)</p>
+  </div>
+
+  <div class="grp">▶ 홈 히어로 — 4가지 방향</div>
+
+  <div class="lab"><span class="id">A</span><span class="nm">야타이 네온</span><span class="ds">밤·네온사인 무드</span></div>
+  <div class="frame">
+    <div class="hA"><div class="in">
+      <div class="lant">🏮</div>
+      <div class="ko">후쿠오카 <em>먹부림</em></div>
+      <div class="neon serif">3박4일</div>
+      <div class="dt">친구 셋 · 서울 출발 · <b>8.3 → 8.6</b></div>
+      <div class="chips"><span class="chip">✈ 1h20m 최단</span><span class="chip"><b>🎆 8/5 불꽃</b></span><span class="chip">🌡 33°</span></div>
+    </div></div>
+  </div>
+  <div class="pal"><i style="background:#0A0C11"></i><i style="background:#FF4D7E"></i><i style="background:#36E2D0"></i><i style="background:#FFC24B"></i></div>
+
+  <div class="lab" style="margin-top:30px"><span class="id">B</span><span class="nm">여름 와시 미니멀</span><span class="ds">밝고 차분한 매거진</span></div>
+  <div class="frame">
+    <div class="hB">
+      <div class="stamp serif" style="font-family:'Nanum Myeongjo',serif">福</div>
+      <div class="ey">Fukuoka · なつ旅 2026</div>
+      <div class="big serif" style="font-family:'Nanum Myeongjo',serif">후쿠오카<br>먹부림 여행</div>
+      <div class="sub">친구 셋이서 떠나는 3박4일. 라멘·야타이·온천, 그리고 8월 5일 밤의 불꽃.</div>
+      <div class="line"></div>
+      <div class="meta"><span><b>8.3 → 8.6</b><br>월~목 평일</span><span><span class="dot">●</span> 친구 <b>3명</b><br>서울 출발</span></div>
+    </div>
+  </div>
+  <div class="pal"><i style="background:#F7F4EC"></i><i style="background:#23304A"></i><i style="background:#1C3A5E"></i><i style="background:#E08A5B"></i><i style="background:#C8472E"></i></div>
+
+  <div class="lab" style="margin-top:30px"><span class="id">C</span><span class="nm">레트로 선셋 포스터</span><span class="ds">크고 강한 여행 포스터</span></div>
+  <div class="frame">
+    <div class="hC">
+      <div class="sun"></div>
+      <div class="in">
+        <div class="tagtop">우리 셋의 여름</div>
+        <div class="disp">후쿠오카<br><span class="y">먹부림</span></div>
+        <div class="ticket"><span class="d">8.3→8.6</span><span class="s">3박4일<br>친구 셋</span></div>
+        <div class="who">🎆 8월 5일, 지쿠고가와 불꽃축제까지</div>
+      </div>
+    </div>
+  </div>
+  <div class="pal"><i style="background:#FFB36B"></i><i style="background:#FF6B57"></i><i style="background:#C9447E"></i><i style="background:#5B2A6B"></i><i style="background:#FFE08A"></i></div>
+
+  <div class="lab" style="margin-top:30px"><span class="id">D</span><span class="nm">포토 이머시브</span><span class="ds">실사 사진 풀화면</span></div>
+  <div class="frame">
+    <div class="hD">
+      <img src="img/yatai.jpg" alt="나카스 야타이 야경">
+      <div class="scrim"></div>
+      <div class="in">
+        <div class="ey">Fukuoka 2026 · 친구 셋</div>
+        <div class="ko">후쿠오카<br><em>먹부림</em> 3박4일</div>
+        <div class="row"><span class="pill"><b>8.3</b> → <b>8.6</b></span><span class="pill">🎆 8/5 불꽃</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="pal"><i style="background:#0A0A10"></i><i style="background:#FFC24B"></i><i style="background:#ffffff"></i></div>
+
+  <div class="grp">▶ 상단 내비게이션 — 표기 3가지</div>
+
+  <div class="lab"><span class="id">1</span><span class="nm">미니멀 텍스트</span><span class="ds">이모지 없이 깔끔</span></div>
+  <div class="navbox"><div class="nv1"><a class="on">불꽃</a><span class="sep">·</span><a>일정</a><span class="sep">·</span><a>먹부림</a><span class="sep">·</span><a>숙소</a><span class="sep">·</span><a>항공</a><span class="sep">·</span><a>볼거리</a><span class="sep">·</span><a>예산</a></div></div>
+  <div class="nvcap">선택된 항목만 주홍 밑줄. 글씨만으로 정돈된 느낌.</div>
+
+  <div class="lab" style="margin-top:26px"><span class="id">2</span><span class="nm">아이콘+라벨 칩</span><span class="ds">아이콘 위·글자 아래</span></div>
+  <div class="navbox"><div class="nv2"><a class="fire"><span class="i">🎆</span><span class="t">8/5 불꽃</span></a><a class="on"><span class="i">📅</span><span class="t">일정</span></a><a><span class="i">🍜</span><span class="t">먹부림</span></a><a><span class="i">🏨</span><span class="t">숙소</span></a><a><span class="i">✈️</span><span class="t">항공</span></a><a><span class="i">📸</span><span class="t">볼거리</span></a><a><span class="i">💴</span><span class="t">예산</span></a></div></div>
+  <div class="nvcap">아이콘이 또렷한 카드형. 지금과 비슷하지만 더 정돈.</div>
+
+  <div class="lab" style="margin-top:26px"><span class="id">3</span><span class="nm">넘버 인덱스</span><span class="ds">01·02·03 순서 강조</span></div>
+  <div class="navbox"><div class="nv3"><a class="on"><span class="nu">01</span><span class="t">불꽃</span></a><a><span class="nu">02</span><span class="t">일정</span></a><a><span class="nu">03</span><span class="t">먹부림</span></a><a><span class="nu">04</span><span class="t">숙소</span></a><a><span class="nu">05</span><span class="t">항공</span></a><a><span class="nu">06</span><span class="t">볼거리</span></a><a><span class="nu">07</span><span class="t">예산</span></a></div></div>
+  <div class="nvcap">잡지 인덱스 느낌. 순서가 있는 가이드라 잘 어울림.</div>
+
+</div>
+</body>
+</html>
