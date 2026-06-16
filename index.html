@@ -54,41 +54,36 @@
     100%{transform:translate(116vw,30vh) rotate(8deg) scale(.9);opacity:0}
   }
 
-  /* ============ HERO ============ */
-  .hero{position:relative;background:radial-gradient(120% 90% at 50% 0%,var(--night2) 0%,var(--night) 55%,#0B0E1C 100%);
-    color:#F3EEDF;text-align:center;padding:62px 20px 120px;overflow:hidden}
-  .hero .fw{position:absolute;inset:0;pointer-events:none;opacity:.9}
-  .hero .kanji{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--serif);
-    font-weight:800;font-size:min(48vw,340px);color:rgba(242,193,78,.06);line-height:1;pointer-events:none;user-select:none;white-space:nowrap}
-  .hero .inner{position:relative;z-index:2}
-  .hero .kick{font-size:12.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--spark);font-weight:600;margin-bottom:18px}
-  .hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(40px,11vw,72px);line-height:1.04;letter-spacing:-.02em}
+  /* ============ HERO (photo immersive) ============ */
+  .hero{position:relative;min-height:86vh;min-height:86svh;display:flex;flex-direction:column;justify-content:flex-end;
+    color:#fff;overflow:hidden;background:#15161c}
+  .hero .hbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+  .hero .hscrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,18,.5) 0%,rgba(10,11,18,.06) 26%,rgba(10,11,18,.24) 54%,rgba(10,11,18,.93) 100%)}
+  .hero .inner{position:relative;z-index:2;padding:30px 22px 42px;max-width:780px;margin:0 auto;width:100%}
+  .hero .kick{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--spark);font-weight:700}
+  .hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(40px,12vw,68px);line-height:1.04;letter-spacing:-.02em;margin-top:12px;text-shadow:0 2px 26px rgba(0,0,0,.45)}
   .hero h1 em{font-style:normal;color:var(--spark)}
-  .hero .lead{font-size:14.5px;color:#C9C6DA;margin-top:18px}
-  .hero .bigdate{font-family:var(--serif);font-weight:800;font-size:clamp(30px,8vw,52px);margin:8px 0 2px;letter-spacing:-.01em}
-  .hero .bigdate b{color:var(--spark)}
-  .cd{display:inline-flex;gap:10px;margin-top:24px;background:rgba(255,255,255,.06);border:1px solid rgba(242,193,78,.3);border-radius:999px;padding:10px 8px 10px 18px;align-items:center;cursor:pointer}
-  .cd .lab{font-size:12px;letter-spacing:.12em;color:#C9C6DA;text-transform:uppercase}
-  .cd .num{font-family:var(--serif);font-weight:800;font-size:26px;color:var(--spark);line-height:1}
-  .cd .pill{background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:7px 13px;border-radius:999px;white-space:nowrap}
-  .hfacts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:26px}
-  .hfact{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;min-width:84px}
-  .hfact .l{font-size:10.5px;color:#A7A4BC;letter-spacing:.04em}
-  .hfact .v{font-size:14px;font-weight:700;color:#F3EEDF;margin-top:2px}
-  .hfact .v b{color:var(--spark)}
-  .wave{position:absolute;left:0;right:0;bottom:-1px;z-index:1;line-height:0}
-  .wave svg{width:100%;height:54px;display:block}
+  .hero .hrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .hero .hp{font-size:12.5px;font-weight:600;color:#f1efe9;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);border-radius:999px;padding:6px 13px;backdrop-filter:blur(4px)}
+  .hero .hp b{color:var(--spark)}
+  .cd{display:inline-flex;gap:10px;margin-top:16px;background:rgba(0,0,0,.34);border:1px solid rgba(242,193,78,.42);border-radius:999px;padding:9px 8px 9px 16px;align-items:center;cursor:pointer;backdrop-filter:blur(4px)}
+  .cd .lab{font-size:11.5px;letter-spacing:.1em;color:#dcd9cf;text-transform:uppercase}
+  .cd .num{font-family:var(--serif);font-weight:800;font-size:24px;color:var(--spark);line-height:1}
+  .cd .pill{background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;white-space:nowrap}
 
-  /* ============ NAV ============ */
-  .nav{position:sticky;top:0;z-index:50;background:rgba(251,245,233,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
-    display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 14px}
-  .nav::-webkit-scrollbar{display:none}
-  .nav a{flex:0 0 auto;font-size:13.5px;font-weight:600;color:var(--ink2);background:var(--paper2);border:1px solid var(--line);
-    border-radius:999px;padding:8px 14px;white-space:nowrap;transition:all .15s}
-  .nav a:hover{border-color:var(--accent);color:var(--accent2)}
-  .nav a.fire{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .nav a.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .nav a.fire.active{background:var(--accent);border-color:var(--accent)}
+  /* ============ NAV (clean homepage bar) ============ */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(251,245,233,.95);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:0 16px;height:52px}
+  .nav .brand{flex:0 0 auto;font-family:var(--serif);font-weight:800;font-size:16px;color:var(--ink);letter-spacing:-.01em;white-space:nowrap}
+  .nav .brand span{color:var(--accent)}
+  .nav .navlinks{display:flex;align-items:center;gap:20px;overflow-x:auto;scrollbar-width:none;height:100%;margin-left:auto}
+  .nav .navlinks::-webkit-scrollbar{display:none}
+  .nav .navlinks a{flex:0 0 auto;position:relative;display:flex;align-items:center;height:100%;font-size:14px;font-weight:600;
+    color:var(--ink2);white-space:nowrap;transition:color .15s}
+  .nav .navlinks a:hover{color:var(--accent2)}
+  .nav .navlinks a.active{color:var(--accent2)}
+  .nav .navlinks a.active::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--accent);border-radius:2px}
+  @media(max-width:560px){.nav{gap:10px;padding:0 12px}.nav .navlinks{gap:15px}.nav .navlinks a{font-size:13.5px}.nav .brand{font-size:14.5px}}
 
   section{margin-top:60px;scroll-margin-top:62px}
   .sk{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--accent2);font-weight:600;margin-bottom:8px}
@@ -363,45 +358,35 @@
   <svg class="plane" viewBox="0 0 48 48" fill="none"><path d="M4 26 L44 6 L34 42 L26 30 L14 32 Z" fill="#F2C14E" stroke="#B23A22" stroke-width="1.5" stroke-linejoin="round"/><path d="M26 30 L34 42 L28 30 Z" fill="#D7472B"/></svg>
 </div>
 
-<!-- ============ HERO ============ -->
+<!-- ============ HERO (photo immersive) ============ -->
 <header class="hero">
-  <div class="kanji serif">福岡</div>
-  <svg class="fw" viewBox="0 0 780 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <g stroke="#F2C14E" stroke-width="1.4" opacity=".55">
-      <g transform="translate(150,110)"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="24" y2="-24"/><line x1="0" y1="0" x2="34" y2="0"/><line x1="0" y1="0" x2="24" y2="24"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-24" y2="24"/><line x1="0" y1="0" x2="-34" y2="0"/><line x1="0" y1="0" x2="-24" y2="-24"/></g>
-    </g>
-    <g stroke="#D7472B" stroke-width="1.4" opacity=".5">
-      <g transform="translate(620,90) scale(.8)"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="24" y2="-24"/><line x1="0" y1="0" x2="34" y2="0"/><line x1="0" y1="0" x2="24" y2="24"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-24" y2="24"/><line x1="0" y1="0" x2="-34" y2="0"/><line x1="0" y1="0" x2="-24" y2="-24"/></g>
-    </g>
-    <g fill="#F2C14E"><circle cx="150" cy="76" r="1.6"/><circle cx="184" cy="110" r="1.6"/><circle cx="116" cy="110" r="1.6"/><circle cx="150" cy="144" r="1.6"/><circle cx="620" cy="63" r="1.4"/><circle cx="647" cy="90" r="1.4"/><circle cx="593" cy="90" r="1.4"/></g>
-    <g fill="#fff" opacity=".5"><circle cx="80" cy="200" r="1"/><circle cx="300" cy="60" r="1"/><circle cx="480" cy="160" r="1"/><circle cx="700" cy="220" r="1"/><circle cx="380" cy="200" r="1"/><circle cx="560" cy="240" r="1"/></g>
-  </svg>
+  <img class="hbg" src="img/hero.jpg" alt="나카스 야타이 야경 — 후쿠오카의 밤" fetchpriority="high">
+  <div class="hscrim"></div>
   <div class="inner">
-    <div class="kick">우리 셋의 여름 · なつ旅 ふくおか 2026</div>
+    <div class="kick">ふくおか 2026 · 친구 셋이서</div>
     <h1 class="serif">후쿠오카<br><em>먹부림</em> 3박4일</h1>
-    <div class="lead">서울(인천) 출발 · 친구 셋이서 · 평일 월~목</div>
-    <div class="bigdate serif">8.3<b> → </b>8.6</div>
-    <div class="cd" id="cd" title="비행기 띄우기 ✈️"><span class="lab">출발까지</span><span class="num" id="cdnum">D-—</span><span class="pill" id="cdsub">곧 만나요</span></div>
-    <div class="hfacts">
-      <div class="hfact"><div class="l">인원</div><div class="v">친구 <b>3명</b></div></div>
-      <div class="hfact"><div class="l">비행</div><div class="v"><b>1h 20m</b> 최단</div></div>
-      <div class="hfact"><div class="l">8월 더위</div><div class="v"><b>33°</b>/26°</div></div>
-      <div class="hfact"><div class="l">하이라이트</div><div class="v">🎆 <b>8/5 불꽃</b></div></div>
+    <div class="hrow">
+      <span class="hp"><b>8.3</b> → <b>8.6</b> · 월~목</span>
+      <span class="hp">✈ 1시간 20분</span>
+      <span class="hp">🎆 8/5 불꽃축제</span>
     </div>
+    <div class="cd" id="cd" title="비행기 띄우기 ✈️"><span class="lab">출발까지</span><span class="num" id="cdnum">D-—</span><span class="pill" id="cdsub">곧 만나요</span></div>
   </div>
-  <div class="wave"><svg viewBox="0 0 1440 54" preserveAspectRatio="none" aria-hidden="true"><path d="M0,32 C240,0 480,54 720,40 C960,26 1200,8 1440,30 L1440,54 L0,54 Z" fill="#FBF5E9"/></svg></div>
 </header>
 
-<!-- ============ NAV ============ -->
+<!-- ============ NAV (clean homepage bar) ============ -->
 <nav class="nav" id="nav" aria-label="섹션 바로가기">
-  <a href="#fest" class="fire">🎆 8/5 불꽃</a>
-  <a href="#plan">📅 일정</a>
-  <a href="#food">🍜 먹부림</a>
-  <a href="#stay">🏨 숙소</a>
-  <a href="#flight">✈️ 항공</a>
-  <a href="#spots">📸 볼거리</a>
-  <a href="#money">💴 예산·교통</a>
-  <a href="#check">✅ 체크</a>
+  <a class="brand" href="#">후쿠오카<span>’26</span></a>
+  <div class="navlinks">
+    <a href="#fest">불꽃</a>
+    <a href="#plan">일정</a>
+    <a href="#food">먹부림</a>
+    <a href="#stay">숙소</a>
+    <a href="#flight">항공</a>
+    <a href="#spots">볼거리</a>
+    <a href="#money">예산</a>
+    <a href="#check">체크</a>
+  </div>
 </nav>
 
 <div class="wrap">
