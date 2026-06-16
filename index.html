@@ -469,14 +469,15 @@
 
   /* ===== BOTTOM TAB BAR (mobile companion nav) ===== */
   .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:110;display:none;
-    background:rgba(255,255,255,.92);backdrop-filter:saturate(1.5) blur(16px);-webkit-backdrop-filter:saturate(1.5) blur(16px);
-    border-top:1px solid var(--border);padding:7px 6px calc(7px + env(safe-area-inset-bottom));
-    grid-template-columns:repeat(5,1fr)}
-  .tabbar a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 0;color:var(--faint);font-size:10.5px;font-weight:600}
+    background:rgba(255,255,255,.94);backdrop-filter:saturate(1.5) blur(16px);-webkit-backdrop-filter:saturate(1.5) blur(16px);
+    border-top:1px solid var(--border);padding:7px 8px calc(7px + env(safe-area-inset-bottom));
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:2px;scroll-behavior:smooth}
+  .tabbar::-webkit-scrollbar{display:none}
+  .tabbar a{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 9px;min-width:52px;color:var(--faint);font-size:10.5px;font-weight:600}
   .tabbar a .ico{font-size:21px;stroke-width:1.7}
   .tabbar a.active{color:var(--accent-ink)}
   @media(max-width:720px){
-    .tabbar{display:grid}
+    .tabbar{display:flex}
     body{padding-bottom:74px}
   }
 
@@ -1177,9 +1178,15 @@
 <!-- ===== bottom tab bar (mobile) ===== -->
 <nav class="tabbar" id="tabbar" aria-label="빠른 이동">
   <a href="#plan" data-sec="plan"><svg class="ico"><use href="#i-cal"/></svg>일정</a>
-  <a href="#food" data-sec="food"><svg class="ico"><use href="#i-bowl"/></svg>먹부림</a>
-  <a href="#map" data-sec="map"><svg class="ico"><use href="#i-map"/></svg>동선</a>
   <a href="#fest" data-sec="fest"><svg class="ico"><use href="#i-spark"/></svg>불꽃</a>
+  <a href="#food" data-sec="food"><svg class="ico"><use href="#i-bowl"/></svg>먹부림</a>
+  <a href="#stay" data-sec="stay"><svg class="ico"><use href="#i-bed"/></svg>숙소</a>
+  <a href="#flight" data-sec="flight"><svg class="ico"><use href="#i-plane"/></svg>항공</a>
+  <a href="#spots" data-sec="spots"><svg class="ico"><use href="#i-cam"/></svg>볼거리</a>
+  <a href="#money" data-sec="money"><svg class="ico"><use href="#i-wallet"/></svg>예산</a>
+  <a href="#fullmap" data-sec="fullmap"><svg class="ico"><use href="#i-map"/></svg>지도</a>
+  <a href="#tools" data-sec="tools"><svg class="ico"><use href="#i-sun"/></svg>도구</a>
+  <a href="#vote" data-sec="vote"><svg class="ico"><use href="#i-ticket"/></svg>투표</a>
   <a href="#check" data-sec="check"><svg class="ico"><use href="#i-check"/></svg>체크</a>
 </nav>
 
@@ -1335,7 +1342,7 @@
       Object.keys(topLinks).forEach(function(k){topLinks[k].classList.remove('active');});
       if(topLinks[id])topLinks[id].classList.add('active');
       Object.keys(botLinks).forEach(function(k){botLinks[k].classList.remove('active');});
-      if(botLinks[id])botLinks[id].classList.add('active');
+      if(botLinks[id]){ var bt=botLinks[id]; bt.classList.add('active'); var bbar=bt.parentNode; if(bbar&&bbar.scrollWidth>bbar.clientWidth+4){ bbar.scrollTo({left:bt.offsetLeft-bbar.clientWidth/2+bt.clientWidth/2, behavior:'smooth'}); } }
     }}); },{rootMargin:'-45% 0px -50% 0px'});
     secs.forEach(function(s){ina.observe(s);});
   })();
