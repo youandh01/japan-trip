@@ -1489,5 +1489,52 @@
   })();
 })();
 </script>
+<!-- ===== mini music player (floating, tiny controls) ===== -->
+<style>
+  .mp{position:fixed;left:12px;bottom:calc(70px + env(safe-area-inset-bottom));z-index:115;display:flex;align-items:center;gap:3px;
+    background:rgba(20,22,34,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:5px 7px;box-shadow:0 6px 22px rgba(0,0,0,.28)}
+  .mp .mp-btn{background:none;border:none;color:#fff;font-size:14px;cursor:pointer;width:30px;height:30px;border-radius:50%;
+    display:grid;place-items:center;line-height:1;padding:0;-webkit-tap-highlight-color:transparent}
+  .mp .mp-play{background:var(--accent,#ff5a36);color:#fff}
+  .mp .mp-btn:active{transform:scale(.9)}
+  #ytaudio{position:fixed!important;left:-9999px!important;top:0!important;width:1px!important;height:1px!important;opacity:0;pointer-events:none;border:0}
+  @media(min-width:721px){.mp{bottom:18px}}
+  @media(prefers-reduced-motion:reduce){.mp .mp-btn:active{transform:none}}
+</style>
+<div class="mp" id="miniplayer" aria-label="음악 플레이어">
+  <button class="mp-btn" id="mpPrev" type="button" aria-label="이전 곡" title="이전 곡">⏮</button>
+  <button class="mp-btn mp-play" id="mpPlay" type="button" aria-label="재생" title="재생/일시정지">▶</button>
+  <button class="mp-btn" id="mpNext" type="button" aria-label="다음 곡" title="다음 곡">⏭</button>
+</div>
+<div id="ytaudio"></div>
+<script>
+(function(){
+  var IDS=['Y7cZXBOuk8c','lrGFrPoiv0Y','UtHQMqky7vM','bF8cwOvHW3M','yMkjCAs9V40','J51I7q6lwmU'];
+  var player=null, ready=false, started=false;
+  var playBtn=document.getElementById('mpPlay'),
+      prevBtn=document.getElementById('mpPrev'),
+      nextBtn=document.getElementById('mpNext');
+  window.onYouTubeIframeAPIReady=function(){
+    player=new YT.Player('ytaudio',{height:'1',width:'1',
+      playerVars:{playsinline:1,controls:0,rel:0,modestbranding:1},
+      events:{
+        onReady:function(){ready=true;},
+        onStateChange:function(e){
+          if(e.data===1){playBtn.textContent='⏸';playBtn.setAttribute('aria-label','일시정지');}
+          else if(e.data===2||e.data===0){playBtn.textContent='▶';playBtn.setAttribute('aria-label','재생');}
+        }
+      }});
+  };
+  playBtn.addEventListener('click',function(){
+    if(!ready)return;
+    if(!started){started=true;player.loadPlaylist(IDS);return;}
+    if(player.getPlayerState&&player.getPlayerState()===1)player.pauseVideo(); else player.playVideo();
+  });
+  prevBtn.addEventListener('click',function(){if(ready&&started)player.previousVideo();});
+  nextBtn.addEventListener('click',function(){if(ready&&started)player.nextVideo();});
+})();
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
