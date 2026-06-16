@@ -11,6 +11,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 <style>
   :root{
     --bg:#F5F6F8; --surface:#FFFFFF; --surface-2:#EEF0F4;
@@ -532,6 +534,9 @@
       <a href="#flight">항공</a>
       <a href="#spots">볼거리</a>
       <a href="#money">예산</a>
+      <a href="#fullmap">지도</a>
+      <a href="#tools">도구</a>
+      <a href="#vote">투표</a>
       <a href="#check">체크</a>
     </div>
     <span class="mini" id="navmini"><svg class="ico"><use href="#i-clock"/></svg><span id="mininum">D-—</span></span>
@@ -1016,6 +1021,123 @@
     </div>
   </section>
 
+  <!-- ===== FULL MAP · TOOLS · VOTE (added) ===== -->
+  <style>
+  #fullmap .fmlegend{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0 10px;font-size:12px;color:var(--muted)}
+  #fullmap .fmlegend span{display:flex;align-items:center;gap:6px}
+  #fullmap .fmlegend i{width:12px;height:12px;border-radius:50%;display:inline-block;border:2px solid #fff;box-shadow:0 0 0 1px var(--border)}
+  .leafmap{height:400px;width:100%;border-radius:var(--r2);overflow:hidden;z-index:0}
+  .leafmap .leaflet-popup-content{font-size:13px;margin:10px 12px;line-height:1.5}
+  .leafmap .leaflet-popup-content a{color:var(--accent-ink);font-weight:700}
+  .toolsgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+  @media(max-width:620px){.toolsgrid{grid-template-columns:1fr}}
+  .tool-th{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14.5px;margin-bottom:12px}
+  .tool-th .ico{font-size:18px}
+  .tool-th .rate{margin-left:auto;font-size:11px;font-weight:700;color:var(--accent-ink);font-family:var(--mono)}
+  .fxrow{display:flex;align-items:flex-end;gap:10px}
+  .fxrow label{flex:1;font-size:11.5px;color:var(--faint);display:flex;flex-direction:column;gap:5px;font-weight:700}
+  .fxrow input{width:100%;font-size:18px;font-weight:700;font-family:var(--mono);padding:9px 11px;border:1px solid var(--border);border-radius:10px;background:var(--surface-2);color:inherit;-moz-appearance:textfield}
+  .fxrow input::-webkit-outer-spin-button,.fxrow input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .fxrow .eq{font-size:18px;color:var(--faint);font-weight:700;padding-bottom:9px}
+  .fxquick{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+  .fxquick button{font-family:inherit;font-size:11.5px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);border:none;border-radius:999px;padding:5px 11px;cursor:pointer}
+  .fxnote{font-size:10.5px;color:var(--faint);margin-top:9px}
+  .wxnow{display:flex;align-items:center;gap:11px;margin-bottom:11px;min-height:36px}
+  .wxnow .emo{font-size:30px;line-height:1}
+  .wxnow .big{font-size:30px;font-weight:800;font-family:var(--mono);line-height:1}
+  .wxnow .meta{font-size:11.5px;color:var(--faint);line-height:1.45}
+  .wxdays{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+  .wxdays::-webkit-scrollbar{display:none}
+  .wxd{flex:0 0 auto;text-align:center;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:8px 9px;min-width:54px}
+  .wxd .dd{font-size:10px;color:var(--faint);font-weight:700}
+  .wxd .em{font-size:17px;margin:3px 0}
+  .wxd .tt{font-size:11px;font-weight:700;font-family:var(--mono)}
+  .wxd .tt .lo{color:var(--faint);font-weight:600}
+  .wxd .rain{font-size:9px;color:#2A6FDB;font-weight:700;margin-top:2px}
+  .wxcap{font-size:11.5px;color:var(--faint);margin-top:11px}
+  .votecard{padding:4px 4px}
+  .vq{padding:14px 14px;border-bottom:1px solid var(--border)}
+  .vq:last-of-type{border-bottom:none}
+  .vqt{font-size:13.5px;font-weight:800;margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  .vqt .n{font-family:var(--mono);font-size:11px;color:var(--accent-ink)}
+  .vopts{display:flex;gap:7px;flex-wrap:wrap}
+  .vopt{font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);background:var(--surface-2);border:1.5px solid var(--border);border-radius:999px;padding:7px 13px;cursor:pointer;transition:all .15s}
+  .vopt.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+  .vshare{display:flex;align-items:center;justify-content:center;gap:8px;width:calc(100% - 20px);margin:12px 10px 8px;font-family:inherit;font-size:14.5px;font-weight:800;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:13px;cursor:pointer}
+  .vshare .ico{font-size:18px}
+  .formslot{margin-top:14px}
+  .formslot summary{padding:14px 16px;cursor:pointer;font-size:13px;font-weight:700;color:var(--muted);list-style:none}
+  .formslot summary::-webkit-details-marker{display:none}
+  .formslot p{padding:0 16px 16px;font-size:12.5px;color:var(--faint);line-height:1.6}
+  </style>
+
+  <!-- ===== FULL MAP ===== -->
+  <section class="reveal" id="fullmap">
+    <div class="eyebrow"><svg class="ico"><use href="#i-map"/></svg>Map · 전체 지도</div>
+    <h2 class="s-title"><span class="ko">모든 핀, 한 지도에</span></h2>
+    <p class="s-sub">맛집·여행지·숙소·불꽃까지 한눈에. 핀을 누르면 이름과 <b>구글지도 길찾기</b>가 떠요.</p>
+    <div class="fmlegend">
+      <span><i style="background:#D7472B"></i>맛집</span>
+      <span><i style="background:#0E7C61"></i>여행지</span>
+      <span><i style="background:#2A6FDB"></i>숙소</span>
+      <span><i style="background:#B98432"></i>불꽃·근교·공항</span>
+    </div>
+    <div id="leafmap" class="leafmap card"></div>
+    <p class="note">유후인·구루메는 남동쪽으로 멀어요 — 지도를 <b>축소(−)</b>하면 같이 보여요.</p>
+  </section>
+
+  <!-- ===== TOOLS (FX + WEATHER) ===== -->
+  <section class="reveal" id="tools">
+    <div class="eyebrow"><svg class="ico"><use href="#i-wallet"/></svg>Tools · 여행 도구</div>
+    <h2 class="s-title"><span class="ko">환율 &amp; 날씨</span></h2>
+    <p class="s-sub">실시간 엔↔원 환율과 후쿠오카 날씨예보. 자동으로 최신값을 불러와요.</p>
+    <div class="toolsgrid">
+      <div class="card" style="padding:16px 17px">
+        <div class="tool-th"><svg class="ico"><use href="#i-wallet"/></svg>엔 ↔ 원 환율<span class="rate" id="fxrate">…</span></div>
+        <div class="fxrow">
+          <label>일본 엔(¥)<input id="fxJpy" type="number" inputmode="decimal" value="1000"></label>
+          <span class="eq">=</span>
+          <label>한국 원(₩)<input id="fxKrw" type="number" inputmode="decimal"></label>
+        </div>
+        <div class="fxquick" id="fxquick"></div>
+        <div class="fxnote" id="fxnote">불러오는 중…</div>
+      </div>
+      <div class="card" style="padding:16px 17px">
+        <div class="tool-th"><svg class="ico"><use href="#i-sun"/></svg>후쿠오카 날씨</div>
+        <div class="wxnow" id="wxnow">불러오는 중…</div>
+        <div class="wxdays" id="wxdays"></div>
+        <div class="wxcap">📅 8월 평년 <b>33°/26°</b> · 매우 덥고 습함 (예보는 약 7일치)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VOTE ===== -->
+  <section class="reveal" id="vote">
+    <div class="eyebrow"><svg class="ico"><use href="#i-check"/></svg>Decide · 같이 정하기</div>
+    <h2 class="s-title"><span class="ko">셋이서 정할 것들</span></h2>
+    <p class="s-sub">각자 원하는 걸 고르고 <b>'단톡에 공유'</b>를 누르면 내 선택이 한 번에 정리돼 복사돼요. (선택은 이 기기에 저장)</p>
+    <div class="card votecard" id="votecard">
+      <div class="vq" data-q="복귀편(8/6)">
+        <div class="vqt"><span class="n">Q1</span>복귀편 (8/6)</div>
+        <div class="vopts"><button class="vopt" data-v="아시아나 16:25(저녁 귀가)">아시아나 16:25</button><button class="vopt" data-v="진에어 19:40(끝까지)">진에어 19:40</button><button class="vopt" data-v="점심편(여유)">점심편</button></div>
+      </div>
+      <div class="vq" data-q="둘째날(8/4)">
+        <div class="vqt"><span class="n">Q2</span>둘째날 (8/4)</div>
+        <div class="vopts"><button class="vopt" data-v="유후인 당일치기">유후인 당일치기</button><button class="vopt" data-v="다자이후 반나절+시내">다자이후+시내</button></div>
+      </div>
+      <div class="vq" data-q="숙소">
+        <div class="vqt"><span class="n">Q3</span>숙소</div>
+        <div class="vopts"><button class="vopt" data-v="로얄파크(나카스)">로얄파크</button><button class="vopt" data-v="도미인(온천)">도미인</button><button class="vopt" data-v="크로스라이프(가성비)">크로스라이프</button><button class="vopt" data-v="그린·컴포트(역앞 알뜰)">그린·컴포트</button><button class="vopt" data-v="솔라리아(고급)">솔라리아</button></div>
+      </div>
+      <div class="vq" data-q="야간 액티비티">
+        <div class="vqt"><span class="n">Q4</span>해보고 싶은 야간 액티비티</div>
+        <div class="vopts"><button class="vopt" data-v="호크스 야구">호크스 야구</button><button class="vopt" data-v="팀랩 포레스트">팀랩</button><button class="vopt" data-v="나카스 리버크루즈">리버크루즈</button><button class="vopt" data-v="야타이 호핑">야타이</button></div>
+      </div>
+      <button class="vshare" id="voteshare"><svg class="ico"><use href="#i-spark"/></svg>내 선택 단톡에 공유</button>
+    </div>
+    <details class="card formslot"><summary>📊 통합 투표(구글폼)로 결과까지 모으고 싶다면?</summary><p>구글폼이나 Tally로 2분이면 무료 투표 폼을 만들 수 있어요. 만든 폼 링크를 주시면 이 자리에 <b>임베드</b>해서 셋의 결과가 자동 집계되게 해드릴게요. (지금 버전은 각자 선택을 단톡으로 모으는 방식)</p></details>
+  </section>
+
   <!-- ===== CHECKLIST ===== -->
   <section class="reveal" id="check">
     <div class="eyebrow"><svg class="ico"><use href="#i-check"/></svg>Before we go · 출발 전</div>
@@ -1237,6 +1359,123 @@
   inputs.forEach(function(inp,m){inp.value=names[m]||'';inp.addEventListener('input',function(){names[m]=inp.value;save(MKEY,names);paintInitials();});});
   rows.forEach(function(row,i){Array.prototype.slice.call(row.querySelectorAll('.ac')).forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var m=+b.dataset.m;assign[i]=(assign[i]===m)?-1:m;save(AKEY,assign);paintRow(i);});});});
   paintInitials();rows.forEach(function(_,i){paintRow(i);});
+})();
+</script>
+<script>
+(function(){
+  function $(s,c){return (c||document).querySelector(s);}
+  function $all(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));}
+
+  /* ===== FX: JPY <-> KRW ===== */
+  (function(){
+    var rate=9.45, jpy=$('#fxJpy'), krw=$('#fxKrw'), rateEl=$('#fxrate'), noteEl=$('#fxnote'), quick=$('#fxquick');
+    if(!jpy) return;
+    function fromJpy(){ krw.value = jpy.value==='' ? '' : Math.round(parseFloat(jpy.value)*rate); }
+    function fromKrw(){ jpy.value = krw.value==='' ? '' : Math.round(parseFloat(krw.value)/rate); }
+    function showRate(){ rateEl.textContent='100엔 ≈ '+Math.round(100*rate).toLocaleString()+'원'; }
+    jpy.addEventListener('input',fromJpy); krw.addEventListener('input',fromKrw);
+    [100,500,1000,5000,10000].forEach(function(v){ var b=document.createElement('button'); b.type='button'; b.textContent='¥'+v.toLocaleString(); b.addEventListener('click',function(){ jpy.value=v; fromJpy(); }); quick.appendChild(b); });
+    showRate(); fromJpy();
+    fetch('https://open.er-api.com/v6/latest/JPY').then(function(r){return r.json();}).then(function(d){
+      if(d && d.rates && d.rates.KRW){ rate=d.rates.KRW; showRate(); fromJpy(); var t=(d.time_last_update_utc||'').slice(0,16); noteEl.textContent='실시간 환율'+(t?' · '+t+' 기준':''); }
+      else throw 0;
+    }).catch(function(){ noteEl.textContent='실시간 환율을 못 불러와 기준값(100엔≈945원) 사용 중'; });
+  })();
+
+  /* ===== Weather: Open-Meteo ===== */
+  (function(){
+    var nowEl=$('#wxnow'), daysEl=$('#wxdays'); if(!nowEl) return;
+    function wmo(c){ var m={0:['맑음','☀️'],1:['대체로 맑음','🌤️'],2:['구름 조금','⛅'],3:['흐림','☁️'],45:['안개','🌫️'],48:['안개','🌫️'],51:['이슬비','🌦️'],53:['이슬비','🌦️'],55:['이슬비','🌦️'],56:['이슬비','🌦️'],57:['이슬비','🌦️'],61:['비','🌧️'],63:['비','🌧️'],65:['강한 비','🌧️'],66:['비','🌧️'],67:['비','🌧️'],71:['눈','🌨️'],73:['눈','🌨️'],75:['눈','🌨️'],77:['눈','🌨️'],80:['소나기','🌦️'],81:['소나기','🌦️'],82:['강한 소나기','🌧️'],85:['눈','🌨️'],86:['눈','🌨️'],95:['뇌우','⛈️'],96:['뇌우','⛈️'],99:['뇌우','⛈️']}; return m[c]||['',''+'🌡️']; }
+    var DOW=['일','월','화','수','목','금','토'];
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=33.5902&longitude=130.4017&current=temperature_2m,weather_code,relative_humidity_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=7')
+    .then(function(r){return r.json();}).then(function(d){
+      var c=d.current, w=wmo(c.weather_code);
+      nowEl.innerHTML='<span class="emo">'+w[1]+'</span><span class="big">'+Math.round(c.temperature_2m)+'°</span><span class="meta">지금 후쿠오카<br>'+w[0]+' · 습도 '+c.relative_humidity_2m+'%</span>';
+      var dl=d.daily, h='';
+      for(var i=0;i<dl.time.length;i++){ var dt=new Date(dl.time[i]+'T00:00:00+09:00'), ww=wmo(dl.weather_code[i]); var lab=(i===0?'오늘':dl.time[i].slice(5).replace('-','/')+'('+DOW[dt.getDay()]+')');
+        h+='<div class="wxd"><div class="dd">'+lab+'</div><div class="em">'+ww[1]+'</div><div class="tt">'+Math.round(dl.temperature_2m_max[i])+'°<span class="lo">/'+Math.round(dl.temperature_2m_min[i])+'°</span></div><div class="rain">💧'+dl.precipitation_probability_max[i]+'%</div></div>';
+      }
+      daysEl.innerHTML=h;
+    }).catch(function(){ nowEl.textContent='날씨를 불러오지 못했어요 (8월 평년 33°/26°).'; });
+  })();
+
+  /* ===== Full map: Leaflet (lazy) ===== */
+  (function(){
+    var el=$('#leafmap'); if(!el) return;
+    var COL={food:'#D7472B',spot:'#0E7C61',stay:'#2A6FDB',event:'#B98432'};
+    var FMP=[
+     {c:'stay',n:'로얄파크 캔버스 나카스',q:'ザ ロイヤルパーク キャンバス 福岡中洲',la:33.5947,ln:130.4043},
+     {c:'stay',n:'도미인 캐널시티마에',q:'ドーミーイン博多キャナルシティ前',la:33.5906,ln:130.4123},
+     {c:'stay',n:'크로스라이프 하카타텐진',q:'クロスライフ博多天神',la:33.5887,ln:130.4030},
+     {c:'stay',n:'하카타 그린호텔 아넥스',q:'博多グリーンホテルアネックス',la:33.5913,ln:130.4222},
+     {c:'stay',n:'컴포트호텔 하카타',q:'コンフォートホテル博多',la:33.5908,ln:130.4182},
+     {c:'stay',n:'솔라리아 니시테츠',q:'ソラリア西鉄ホテル福岡',la:33.5896,ln:130.3985},
+     {c:'food',n:'이치란 본사총본점',q:'一蘭 本社総本店 中洲',la:33.5932,ln:130.4046},
+     {c:'food',n:'잇푸도 다이묘본점',q:'一風堂 大名本店 福岡',la:33.5887,ln:130.3960},
+     {c:'food',n:'모츠나베 오오야마',q:'博多もつ鍋おおやま本店',la:33.5957,ln:130.4085},
+     {c:'food',n:'미즈타키 토리덴',q:'博多水炊き とり田 博多本店',la:33.5928,ln:130.4117},
+     {c:'food',n:'원조 멘타이쥬',q:'元祖博多めんたい重',la:33.5907,ln:130.4035},
+     {c:'food',n:'다이치노 우동',q:'大地のうどん 博多駅',la:33.5910,ln:130.4179},
+     {c:'food',n:'효탄 회전스시',q:'ひょうたんの回転寿司 天神',la:33.5902,ln:130.3995},
+     {c:'food',n:'나카스 야타이',q:'中洲屋台',la:33.5914,ln:130.4071},
+     {c:'spot',n:'다자이후 텐만구',q:'太宰府天満宮',la:33.6194,ln:130.4214},
+     {c:'spot',n:'캐널시티 하카타',q:'キャナルシティ博多',la:33.5897,ln:130.4111},
+     {c:'spot',n:'오호리공원',q:'大濠公園',la:33.5861,ln:130.3764},
+     {c:'spot',n:'후쿠오카타워',q:'福岡タワー',la:33.5933,ln:130.3515},
+     {c:'spot',n:'텐진 지하상가',q:'天神地下街',la:33.5896,ln:130.3997},
+     {c:'spot',n:'BOSS E·ZO·팀랩',q:'BOSS E・ZO FUKUOKA',la:33.5950,ln:130.3638},
+     {c:'spot',n:'베이사이드 플레이스',q:'ベイサイドプレイス博多',la:33.6041,ln:130.3987},
+     {c:'spot',n:'이토시마 흰토리이',q:'桜井二見ヶ浦 糸島',la:33.6238,ln:130.1665},
+     {c:'event',n:'구루메 불꽃축제',q:'久留米水天宮',la:33.3204,ln:130.4960},
+     {c:'event',n:'유후인 긴린코',q:'金鱗湖 由布院',la:33.2667,ln:131.3690},
+     {c:'event',n:'후쿠오카공항',q:'福岡空港',la:33.5868,ln:130.4474}
+    ];
+    var built=false;
+    function build(){
+      if(built || typeof L==='undefined') return; built=true;
+      var map=L.map('leafmap',{scrollWheelZoom:false}).setView([33.5905,130.4017],12);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap'}).addTo(map);
+      FMP.forEach(function(p){
+        L.circleMarker([p.la,p.ln],{radius:7,weight:2,color:'#fff',fillColor:COL[p.c],fillOpacity:1}).addTo(map)
+          .bindPopup('<b>'+p.n+'</b><br><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.q)+'">구글지도 길찾기 →</a>');
+      });
+      setTimeout(function(){ map.invalidateSize(); },200);
+    }
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ build(); io.disconnect(); } }); },{threshold:0.05});
+    io.observe(el);
+    // safety: build after leaflet loads even if already in view
+    window.addEventListener('load',function(){ var r=el.getBoundingClientRect(); if(r.top<window.innerHeight && r.bottom>0) build(); });
+  })();
+
+  /* ===== Vote: pick + share to chat ===== */
+  (function(){
+    var card=$('#votecard'); if(!card) return;
+    var KEY='fuk_vote_v1', saved={};
+    try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){}
+    $all('.vq',card).forEach(function(vq){
+      var q=vq.dataset.q;
+      $all('.vopt',vq).forEach(function(b){
+        if(saved[q]===b.dataset.v) b.classList.add('sel');
+        b.addEventListener('click',function(){
+          $all('.vopt',vq).forEach(function(x){ x.classList.remove('sel'); });
+          b.classList.add('sel'); saved[q]=b.dataset.v;
+          try{ localStorage.setItem(KEY,JSON.stringify(saved)); }catch(e){}
+        });
+      });
+    });
+    var sb=$('#voteshare'); if(!sb) return;
+    var orig=sb.innerHTML;
+    sb.addEventListener('click',function(){
+      var lines=['🗳️ 내 선택 — 후쿠오카 여행'];
+      $all('.vq',card).forEach(function(vq){ lines.push('· '+vq.dataset.q+': '+(saved[vq.dataset.q]||'(아직 미정)')); });
+      lines.push(location.href.split('#')[0]);
+      var txt=lines.join('\n');
+      function done(){ sb.textContent='✅ 복사됨 — 단톡에 붙여넣기!'; setTimeout(function(){ sb.innerHTML=orig; },2400); }
+      if(navigator.share){ navigator.share({text:txt}).then(done).catch(function(){}); }
+      else if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(function(){ window.prompt('복사해서 단톡에 붙여넣기:',txt); }); }
+      else { window.prompt('복사해서 단톡에 붙여넣기:',txt); }
+    });
+  })();
 })();
 </script>
 </body>
