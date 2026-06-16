@@ -293,12 +293,13 @@
   .hcards{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:15px}
   @media(max-width:600px){.hcards{grid-template-columns:1fr}}
   .ho{padding:17px;display:flex;flex-direction:column;overflow:hidden}
-  .ho .pic{position:relative;margin:-17px -17px 14px;aspect-ratio:16/9;overflow:hidden;background:var(--surface-2);cursor:zoom-in}
+  .ho .pic{position:relative;display:block;margin:-17px -17px 14px;aspect-ratio:16/9;overflow:hidden;background:var(--surface-2);cursor:pointer;text-decoration:none}
   .ho .pic img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
   .ho:hover .pic img{transform:scale(1.05)}
   .ho .pic .zoom{position:absolute;right:8px;bottom:8px;background:rgba(12,13,22,.6);color:#fff;width:24px;height:24px;border-radius:50%;display:grid;place-items:center}
   .ho .pic .zoom .ico{font-size:13px}
-  .ho .pic .exg{position:absolute;left:8px;bottom:8px;background:rgba(12,13,22,.58);color:#fff;font-size:9.5px;font-weight:600;padding:2px 7px;border-radius:6px;letter-spacing:.02em}
+  .ho .pic .exg{position:absolute;left:8px;bottom:8px;background:var(--accent);color:#fff;font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:8px;letter-spacing:.01em;box-shadow:0 2px 8px rgba(0,0,0,.28)}
+  .ho .pic::after{content:"↗";position:absolute;right:9px;bottom:8px;color:#fff;font-size:13px;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,.5)}
   .ho.pick{border:1.5px solid var(--accent)}
   .ho .top{display:flex;justify-content:space-between;align-items:flex-start;gap:9px}
   .ho .nm{font-size:15px;font-weight:800;line-height:1.35;letter-spacing:-.01em}
@@ -834,7 +835,7 @@
   <section class="reveal" id="stay">
     <div class="eyebrow"><svg class="ico"><use href="#i-bed"/></svg>Stay · 3인 한 방</div>
     <h2 class="s-title"><span class="ko">셋이 한 방에서 자기 좋은 곳</span></h2>
-    <p class="s-sub">밤 9시 도착이라 <b>야타이 접근성</b>이 핵심. 거점부터 정하고, 트리플룸/3인 가능 호텔 6곳 골랐어요. <b>'지도 보기'</b>로 실제 위치를 확인하세요.</p>
+    <p class="s-sub">밤 9시 도착이라 <b>야타이 접근성</b>이 핵심. 거점부터 정하고, 트리플룸/3인 가능 호텔 6곳 골랐어요. <b>카드 사진을 누르면 실제 객실 사진(아고다)</b>, <b>'지도 보기'</b>로 위치 확인.</p>
     <div class="areabar">
       <div class="ab"><div class="t"><svg class="ico"><use href="#i-train"/></svg>하카타역</div><div class="p"><b>짐 이동·공항·신칸센 최강.</b> 가성비 호텔 많음. 단 야타이까진 도보 12~20분(첫날 밤 택시 추천)</div><div class="abmetric">야타이 접근<span class="dots"><i class="on"></i><i></i><i></i></span></div></div>
       <div class="ab"><div class="t"><svg class="ico"><use href="#i-bowl"/></svg>나카스</div><div class="p"><b>도착→야타이 동선 1순위.</b> 강변 분위기 최고. 단 객실료가 살짝 비싸고 밤엔 시끌</div><div class="abmetric">야타이 접근<span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></div></div>
@@ -842,7 +843,7 @@
     </div>
     <div class="hcards">
       <div class="ho card pick">
-        <div class="pic"><img class="ph" src="img/hotel_room1.jpg" data-cap="객실 분위기 예시 — 신축 트윈룸" alt="더 로얄 파크 캔버스 나카스 (이미지 예시)" loading="lazy"><span class="zoom"><svg class="ico"><use href="#i-cam"/></svg></span><span class="exg">이미지 예시</span></div>
+        <a class="pic" href="https://www.agoda.com/ko-kr/the-royal-park-canvas-fukuoka-nakasu/hotel/fukuoka-jp.html" target="_blank" rel="noopener"><img src="img/hotel_room1.jpg" alt="더 로얄 파크 캔버스 나카스 — 누르면 실제 사진" loading="lazy"><span class="exg">📷 실제 사진 보기</span></a>
         <div class="top"><div><div class="nm"><a href="https://www.google.com/maps/search/?api=1&query=ザ ロイヤルパーク キャンバス 福岡中洲">더 로얄 파크 캔버스 나카스</a></div><div class="area">나카스 강변 · 신축 4성</div></div><span class="badge b-accent">동선 최강</span></div>
         <div class="pr">3인 1박 약 4.5만~6만엔 (1인 14~18만원)</div>
         <div class="ds">21시 도착→야타이 직행 동선 최강. 강 바로 앞, 슈페리어 트윈에 싱글2+소파베드로 정확히 3인. 야식 후 5분이면 침대.</div>
@@ -850,7 +851,7 @@
         <div class="hmap"></div>
       </div>
       <div class="ho card pick">
-        <div class="pic"><img class="ph" src="img/hotel_onsen1.jpg" data-cap="천연온천 대욕장 분위기 예시" alt="도미인 프리미엄 하카타 (이미지 예시)" loading="lazy"><span class="zoom"><svg class="ico"><use href="#i-cam"/></svg></span><span class="exg">이미지 예시</span></div>
+        <a class="pic" href="https://www.agoda.com/ko-kr/dormy-inn-premium-hakata-canal-city-mae-natural-hot-spring/hotel/fukuoka-jp.html" target="_blank" rel="noopener"><img src="img/hotel_onsen1.jpg" alt="도미인 프리미엄 하카타 — 누르면 실제 사진" loading="lazy"><span class="exg">📷 실제 사진 보기</span></a>
         <div class="top"><div><div class="nm"><a href="https://www.google.com/maps/search/?api=1&query=ドーミーインPREMIUM博多キャナルシティ前">도미인 프리미엄 하카타 캐널시티마에</a></div><div class="area">캐널시티 옆 · 천연온천</div></div><span class="badge b-accent">야식러 천국</span></div>
         <div class="pr">3인 1박 약 3.5만~5만엔 (1인 11~15만원)</div>
         <div class="ds">천연온천 대욕장+사우나, 매일 21:30~23:00 <b>무료 야식 라멘</b> 제공. 늦밤 도착·온천·라멘 3박자. 예약 시 3인 타입 선택 필수.</div>
@@ -858,7 +859,7 @@
         <div class="hmap"></div>
       </div>
       <div class="ho card">
-        <div class="pic"><img class="ph" src="img/hotel_onsen2.jpg" data-cap="대욕장·목욕 분위기 예시" alt="크로스라이프 하카타 텐진 (이미지 예시)" loading="lazy"><span class="zoom"><svg class="ico"><use href="#i-cam"/></svg></span><span class="exg">이미지 예시</span></div>
+        <a class="pic" href="https://go-ohr.reservation.jp/ko/hotels/ohr-cltenjin" target="_blank" rel="noopener"><img src="img/hotel_onsen2.jpg" alt="크로스라이프 하카타 텐진 — 누르면 실제 사진" loading="lazy"><span class="exg">📷 실제 사진 보기</span></a>
         <div class="top"><div><div class="nm"><a href="https://www.google.com/maps/search/?api=1&query=クロスライフ博多天神">크로스라이프 하카타 텐진</a></div><div class="area">텐진·하루요시 · 대욕장</div></div><span class="badge b-ok">가성비</span></div>
         <div class="pr">3인 1박 약 3만~4.5만엔 (1인 9~14만원)</div>
         <div class="ds">가성비+대욕장+3인 삼박자. 디지털아트 대욕장&사우나, 복층 '트윈 로프트'는 3~4인 여유. 술 마시고 와도 대욕장에서 회복.</div>
@@ -866,7 +867,7 @@
         <div class="hmap"></div>
       </div>
       <div class="ho card">
-        <div class="pic"><img class="ph" src="img/hotel_room2.jpg" data-cap="객실 분위기 예시 — 트리플" alt="하카타 그린 호텔 아넥스 (이미지 예시)" loading="lazy"><span class="zoom"><svg class="ico"><use href="#i-cam"/></svg></span><span class="exg">이미지 예시</span></div>
+        <a class="pic" href="https://www.agoda.com/ko-kr/hakata-green-hotel-annex/hotel/fukuoka-jp.html" target="_blank" rel="noopener"><img src="img/hotel_room2.jpg" alt="하카타 그린 호텔 아넥스 — 누르면 실제 사진" loading="lazy"><span class="exg">📷 실제 사진 보기</span></a>
         <div class="top"><div><div class="nm"><a href="https://www.google.com/maps/search/?api=1&query=博多グリーンホテルアネックス">하카타 그린 호텔 아넥스</a></div><div class="area">하카타역 도보 1~2분</div></div><span class="badge b-ok">최저가·트리플</span></div>
         <div class="pr">3인 1박 약 2.5만~3.5만엔 (1인 8~11만원)</div>
         <div class="ds">역세권 가성비 끝판왕. 전용 '트리플룸'(침대 3개)이 있어 따로 안 자도 됨. 캐리어 끌고 새벽 이동·공항버스 편함. 방은 다소 좁음.</div>
@@ -874,7 +875,7 @@
         <div class="hmap"></div>
       </div>
       <div class="ho card">
-        <div class="pic"><img class="ph" src="img/hotel_room1.jpg" data-cap="객실 분위기 예시" alt="컴포트 호텔 하카타 (이미지 예시)" loading="lazy"><span class="zoom"><svg class="ico"><use href="#i-cam"/></svg></span><span class="exg">이미지 예시</span></div>
+        <a class="pic" href="https://www.agoda.com/ko-kr/comfort-hotel-hakata/hotel/fukuoka-jp.html" target="_blank" rel="noopener"><img src="img/hotel_room1.jpg" alt="컴포트 호텔 하카타 — 누르면 실제 사진" loading="lazy"><span class="exg">📷 실제 사진 보기</span></a>
         <div class="top"><div><div class="nm"><a href="https://www.google.com/maps/search/?api=1&query=コンフォートホテル博多">컴포트 호텔 하카타</a></div><div class="area">하카타역 도보 5분 · 무료조식</div></div><span class="badge b-ok">알뜰</span></div>
         <div class="pr">3인 1박 약 2.2만~3.2만엔 (1인 7~10만원)</div>
         <div class="ds">무료 조식 뷔페+1층 스타벅스·세븐일레븐. 트윈+추가침대/다다미로 3인. '잠만 자고 밖에서 노는' 일정에 최적.</div>
@@ -882,7 +883,7 @@
         <div class="hmap"></div>
       </div>
       <div class="ho card">
-        <div class="pic"><img class="ph" src="img/hotel_onsen4.jpg" data-cap="대욕장 분위기 예시" alt="솔라리아 니시테츠 호텔 (이미지 예시)" loading="lazy"><span class="zoom"><svg class="ico"><use href="#i-cam"/></svg></span><span class="exg">이미지 예시</span></div>
+        <a class="pic" href="https://www.agoda.com/ko-kr/solaria-nishitetsu-hotel-fukuoka/hotel/fukuoka-jp.html" target="_blank" rel="noopener"><img src="img/hotel_onsen4.jpg" alt="솔라리아 니시테츠 호텔 — 누르면 실제 사진" loading="lazy"><span class="exg">📷 실제 사진 보기</span></a>
         <div class="top"><div><div class="nm"><a href="https://www.google.com/maps/search/?api=1&query=ソラリア西鉄ホテル福岡 天神">솔라리아 니시테츠 호텔</a></div><div class="area">텐진 한복판 · 4성+</div></div><span class="badge b-neutral">고급</span></div>
         <div class="pr">3인 1박 약 5만~7만엔 (1인 15~22만원)</div>
         <div class="ds">텐진 한복판 고급 거점, 인기 대욕장. 넓은 디럭스룸+엑스트라베드로 3인 여유. 백화점·지하상가 직결. 기념일 끼면 강추.</div>
